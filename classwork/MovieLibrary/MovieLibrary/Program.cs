@@ -1,46 +1,53 @@
-﻿/* 
- * Bam Bohara
- * Date 08/31/2020
- * class work 
- */
+﻿
 using System;
-using System.Reflection.Metadata;
+
 
 namespace MovieLibrary
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main ( string[] args )
         {
-            FunWithTypes();
-            
+           
+            FunWithvariables();
+
         }
 
-        static void FunWithTypes ()
+        private static void FunWithvariables ()
         {
-            // Body
-
-            // Primitive - Types
-            // variable declaration
+            // Declares hours of type int with int initial value 
             int hours = 10;
-            int code = 0xFF;
-            int ratio = hours * 40;
-            // floating point types - real numbers IEEE
-            // float = 4 bytes, +=E38; 7 to 9 precision 1234566789
-            
-            double payRate = 123.456789;
-            payRate = 123E12;
-            decimal price = 456.746M;
-            // boolean
-            bool ispassing = true;
-            // texTual;
-            // char 2 byte 
-            char LetterA = 'A';
-            char digito = '1';
-            char hex = '\x0A';
+            // Definitely assigned rule 
+            int value;
+            value = 10;
+            int calcualateValue = value *  10;
 
-            string name = "Bob";
-            string empty = "";
+            // Identifiers rule 
+            // Must start with underScore or a letter 
+            // Must consist of letters, digits or underScore 
+            // Must be unique within scope
+            // Cannot be a keyword
+            // variable names 
+            // CamelCased - local variables and parameters 
+            // nouns
+            // descriptive and no abbreviations or acronyms (e.g. okButton, nbrPeople
+            //Multiple variable declaration
+            int width, length;
+            int grade1 = 50, grade2= 60;
+            //Block declarations
+            int x, y, z;
+            double rate1, rate2;
+            string name1, name2;
+            //...
+            name2 = "";
+
+
+            
+
+        }
+
+       
+        
+
         }
     }
-}
