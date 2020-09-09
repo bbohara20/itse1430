@@ -16,3 +16,15 @@ namespace Budget
         }
     }
 }
+/*DO use consistent indentation. In general each block indents one time (3 or 4 spaces). Curly braces should be aligned.
+//NO
+while (someCondition)
+{
+    Foo();
+};
+
+//YES
+while (someCondition)
+{
+    Foo();
+}; */
