@@ -61,8 +61,7 @@ namespace MovieLibrary
             // double rate1 = x * 0.5;
 
         }
-
-        //Function definition - declaration + implementation
+         //Function definition - declaration + implementation
         // [modifiers] T id ([parameters) { S* }
         //Function signature - [return-type] name, parameter types
         static void FunWithTypes ()
