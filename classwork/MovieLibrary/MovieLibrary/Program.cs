@@ -3,37 +3,39 @@ namespace MovieLibrary
 {
     class Program
     {
-        static void Main ( string[] args )
+        private static void Main ( string[] args )
         {
-            FunWithTypes();
-         }
-        // function defination = declaration + implementation
-        static void FunWithTypes()
-        {
-            // variable declaration
-            int hours = 10;
-            int code = 0xFF;
-            int ratio = hours * 40;
-
-            // floating point  Types
-            double payRate = 123.456789;
-            payRate = 123E12;
-            decimal price = 456.746M; // M = money/price
-
-            // boolean
-            // bool = 1 byte, true or false(0)
-            bool isPassing = true;
-
-            // texttual
-            char letterA = 'A';
-            char digito = '1'; // is not ==1
-            char hex = '\x0A'; //Character return
-            string name = "Bob";
-            string empty = "";
-              
+            //FunWithTypes();
+            //FunWithvariables();
         }
 
+        private static void FunWithvariables ()
+        {
+            // Declare hours of Type with inital value 
+            int hours = 10;
+            // Defintely assigned rule
+            int value = 0;
+            int calculatedVallue = value = 10;
+            // multiple variable variable declaration
+            int width, length;
+            int grade1 = 50, grade = 60;
 
-    }
+            //Block declarations
+            int x, y, z;
+            double rate1, rate2;
+            string name1, name2;
+            name2 = "";
+            //...
+            // when needed
+            //int x = 10;
+            //int y = 20;
+            //int z = x + y;
+            //double rate1 = x + 0.5;
+          }
+        static void FunWithTypes ()
+        {
+
+        }
+       }
 
 }
