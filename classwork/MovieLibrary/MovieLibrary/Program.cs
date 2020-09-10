@@ -8,7 +8,7 @@ namespace MovieLibrary
         {
             //FunWithTypes();
             //FunWithVariables();
-
+            // creating variables
             string title = "";
             string description = "";
             string rating = "";
