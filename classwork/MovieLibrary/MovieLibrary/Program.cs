@@ -1,21 +1,22 @@
-﻿/*Bam Bohara 
- * ITSE 1430
- * Movie Library console Aplication
+﻿/*
+ * Bam Bohara
+ * ITSE1430
+ * Movie library consloe Application
  */
 using System;
-namespace MovieLibrary
+
+namespace MovieLbirary
 {
-    class Program
+
+    class program
     {
         static void Main ( string[] args )
         {
-            //FunWithTypes();
-            //FunWithvariables();
-
-            // while loop (boolean (E) s;
+            // while loop
+            // while = while(E) s;
             while (true)
             {
-                //Scope - lifetime of a variables: starts at declaration and continues end of current scope
+                //scope - Lifetime of a variable: starts at declaration and continues until end of current scope
                 char choice = DisplayMenu();
                 if (choice == 'Q')
                     return;
@@ -23,27 +24,26 @@ namespace MovieLibrary
             string title = "";
             string description = "";
             string rating = "";
-            int duration;
-
+            int duration; ;
         }
+
         static char DisplayMenu ()
         {
-            // do single statement while (E)
-            // block statement = {signle statement + }
-            // display menu
+            // do s while(E)
             do
             {
                 Console.WriteLine("Movie Library");
-                Console.WriteLine("---------------------");
-                Console.WriteLine("Q(uit");
-
-                //Get input from user
+                Console.WriteLine("----------------");
+                Console.WriteLine("Q)uit");
+                // Get input from user
                 string value = Console.ReadLine();
-                // if (E) s;
-                if (value =="Q")
+                // if(E) s;
+                if (value == "Q")
                     return 'Q';
                 DisplayError();
             } while (true);
+
+
 
         }
 
@@ -51,9 +51,16 @@ namespace MovieLibrary
         {
             Console.BackgroundColor = ConsoleColor.Red;
             Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine("Invalid option");
-
+            Console.WriteLine("invalid option");
             Console.ResetColor();
+
         }
     }
+
 }
+
+
+
+
+
+
