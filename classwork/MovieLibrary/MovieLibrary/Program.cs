@@ -30,6 +30,7 @@ namespace MovieLibrary
         {
             // do single statement while (E)
             // block statement = {signle statement + }
+            // display menu
             do
             {
                 Console.WriteLine("Movie Library");
