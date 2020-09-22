@@ -34,13 +34,13 @@ namespace MovieLibrary
                 };
             };
         }
-        static string title = "";
-        static string description = "";
-        static string rating = "";
-        static int duration;
-        static bool isClassic;
-        static void AddMovie ()
-        {
+            static string title = "";
+            static string description = "";
+            static string rating = "";
+            static int duration;
+            static bool isClassic;
+            static void AddMovie ()
+            {
             //Get title
             Console.WriteLine("Movie title: ");
             //string title = Console.ReadLine();
@@ -154,7 +154,7 @@ namespace MovieLibrary
                 }
                 switch (value.ToLower())
                 {
-                     case "X": Console.WriteLine("Wrong value"); break;
+                    case "X": Console.WriteLine("Wrong value"); break;
 
                     case "Y":                   //If case statement empty (including semicolon) then fallthrough
                                                 //case "Y":                   //If case statement empty (including semicolon) then fallthrough
@@ -353,7 +353,7 @@ namespace MovieLibrary
             //   \xHH - hex equivalent \x0A 
 
             var name = "Bob\\c";  //Compiler warning - Bobc               
-             //Compiler warning - Bobc            
+                                  //Compiler warning - Bobc            
             var message = "Hello \"Bob\"\nWorld";
 
             //File paths - always escape sequences
