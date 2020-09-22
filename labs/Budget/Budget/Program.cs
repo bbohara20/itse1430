@@ -5,7 +5,7 @@
   */
 
 using System;
-using System.Xml.Serialization;
+
 
 namespace Budget
 {
@@ -16,20 +16,15 @@ namespace Budget
 
         static void Main ( string[] args )
         {
-
-
-
             while (true)
 
 
             {
 
-                switch (DisplayMenu())
-                {
-                    case 'Q': return;
+            switch (DisplayMenu())
+                  {
+                    case 'Q': QUIT_PROGRAM(); break;
                     case 'A': AddMenu(); break;
-                    
-
                 };
             };
         }
@@ -38,7 +33,8 @@ namespace Budget
         static string accountName = "";
         static string accountNumber = "";
         static decimal startingBalance;
-       static bool ReadBoolean ()
+
+        static bool ReadBoolean ()
         {
             do
             {
@@ -49,9 +45,9 @@ namespace Budget
                 {
                     case "X": Console.WriteLine("Wrong value"); break;
 
-                    case "Y":                   
+                    case "Y":
                     case "y": return true;
-                   // case "N": 
+                    // case "N": 
                     case "n": return false;
                     //case "A":
                     case "a":
@@ -94,11 +90,8 @@ namespace Budget
                 Console.WriteLine(accountName);
                 Console.WriteLine("Account Number: ");
                 Console.WriteLine(accountNumber);
-                //balance.ToString("C")
-
                 Console.WriteLine("startingBalance:");
                 Console.WriteLine(startingBalance.ToString("C"));
-
 
                 Console.WriteLine("A)dd accountInfo");
                 Console.WriteLine("Q)uit");
@@ -180,6 +173,26 @@ namespace Budget
                 DisplayError("Value is required");
 
             } while (true);
+
+        }
+
+        static void QUIT_PROGRAM ()
+        {
+            Console.WriteLine("Is quit program( Y/ N)? ");
+
+            //title = ReadString(true);
+            string value = ReadString(true);
+            if (value  == "Y" || value == "y")
+            {
+
+                System.Environment.Exit(-1);
+            } else
+            {
+                DisplayMenu();
+                return;
+            }
+
+
 
         }
     }
