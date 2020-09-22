@@ -49,7 +49,7 @@ namespace Budget
                 {
                     case "X": Console.WriteLine("Wrong value"); break;
 
-                    case "Y":                   //If case statement empty (including semicolon) then fallthrough
+                    case "Y":                   
                     case "y": return true;
                    // case "N": 
                     case "n": return false;
