@@ -1,19 +1,16 @@
 ﻿/*Bam Bohara
 * Date: 09/02/2020
   * ITSE 1430
-  * Lab 1using
+  * Lab 1
   */
 
 using System;
 
-
 namespace Budget
 {
-
-
-    class Program
+class Program
     {
-
+  
         static void Main ( string[] args )
         {
             while (true)
@@ -24,15 +21,23 @@ namespace Budget
             switch (DisplayMenu())
                   {
                     case 'Q': QUIT_PROGRAM(); break;
-                    case 'A': AddMenu(); break;
-                };
+                    case 'A': AddAccountInfo(); break;
+                    case 'M': AddAccountMoney(); break;
+                    case 'E': AddAcoountExpense(); break;
+                 };
             };
         }
-
-
+        
         static string accountName = "";
         static string accountNumber = "";
         static decimal startingBalance;
+        static decimal amount;
+        static string description;
+        static string Category;
+        static DateTime date;
+
+
+
 
         static bool ReadBoolean ()
         {
@@ -64,7 +69,7 @@ namespace Budget
             } while (true);
         }
 
-        static void AddMenu ()
+        static void AddAccountInfo()
         {
             // get account name
             Console.WriteLine("Account Name: ");
@@ -74,7 +79,12 @@ namespace Budget
             accountNumber = ReadInt32(1).ToString();
             //get starting balance
             Console.WriteLine("Starting Balance:");
-            startingBalance =  decimalValue();
+            startingBalance =  decimalValue(1);
+             
+            
+
+
+
         }
 
         static char DisplayMenu ()
@@ -90,15 +100,17 @@ namespace Budget
                 Console.WriteLine(accountName);
                 Console.WriteLine("Account Number: ");
                 Console.WriteLine(accountNumber);
-                Console.WriteLine("startingBalance:");
+                Console.WriteLine("Balance:");
                 Console.WriteLine(startingBalance.ToString("C"));
 
                 Console.WriteLine("A)dd accountInfo");
+                Console.WriteLine("M)oneyAdd account");
+                Console.WriteLine("E)xpenseAdd account");
                 Console.WriteLine("Q)uit");
                 //Get input from user
                 string value = Console.ReadLine();
 
-                if (value  == "Q")   // 2 equal signs => equality 
+                if (value  == "Q" || value == "q")   // 2 equal signs => equality 
                                      //if (value == "Q")   // 2 equal signs => equality 
                     if (String.Compare(value, "Q", true) == 0)
                         return 'Q';
@@ -106,9 +118,15 @@ namespace Budget
                     return 'A';
                 else if (String.Compare(value, "A", StringComparison.CurrentCultureIgnoreCase) == 0)
                     return 'A';
-                //else if (value == "V")
-                else if (String.Compare(value, "V", true) == 0)
-                    return 'V';
+                if (value  == "M" || value == "m")
+                    return 'M';
+                if (value  == "E" || value == "e")
+                    return 'E';
+
+                //else if (value == "M") ;
+                //else if (String.Compare(value, "M", true) == 0);
+                // return 'M';
+
 
                 DisplayError("Invalid option");
 
@@ -129,9 +147,12 @@ namespace Budget
                     return result;
 
                 if (minimumValue != Decimal.MinValue)   //Int32.MaxValue
-                    DisplayError("Value must be at least " + minimumValue);  //String concatenation
-                else
-                    DisplayError("Must be integral value");
+                    DisplayError("Value must be at least " + minimumValue); //String concatenation
+                
+                
+
+             else
+                    DisplayError("Must be decimal value");
             }
             while (true);
         }
@@ -170,6 +191,9 @@ namespace Budget
                 //If not required or not empty return
                 if (!required || value != "")
                     return value;
+               
+                       
+                
                 DisplayError("Value is required");
 
             } while (true);
@@ -186,17 +210,69 @@ namespace Budget
             {
 
                 System.Environment.Exit(-1);
-            } else
-            {
+             } else
+               {
                 DisplayMenu();
                 return;
             }
+          }
 
+        static void AddAccountMoney()
+        {
+            
+            // get add amount 
+            Console.WriteLine("Enter your amount ");
+            amount = decimalValue();
+            if (amount >= 0)
+              startingBalance = startingBalance + amount;
+             // Console.WriteLine(startingBalance);
+            //get description
+            Console.WriteLine("Description): ");
+            //string description = Console.ReadLine();
+             description = ReadString(true);
+            //Console.WriteLine(description);
+            Console.WriteLine(" Category  (optional): ");
+            //string description = Console.ReadLine();
+            Category = ReadString(false);
+            // Console.WriteLine(Category);
+            
+            Console.WriteLine("Date: ");
+            // DateTime dateTime = DateTime.UtcNow.Date;
+            date = DateTime.Today;
+            Console.WriteLine(date.ToString("MM/dd/yyyy"));
+            Console.WriteLine();
+            }
+        static void AddAcoountExpense ()
+        {
+            Console.WriteLine("Enter your amount ");
+            amount = decimalValue();
+            if (amount >= 0)
+               startingBalance = startingBalance - amount;
+            
+            Console.WriteLine("Description): ");
+            //string description = Console.ReadLine();
+            description = ReadString(true);
+            Console.WriteLine(" Category  (optional): ");
+            //string description = Console.ReadLine();
+            Category = ReadString(false);
+            Console.WriteLine("Date: ");
+            // DateTime dateTime = DateTime.UtcNow.Date;
+            date = DateTime.Today;
+            Console.WriteLine(date.ToString("MM/dd/yyyy"));
+            Console.WriteLine();
+            
 
-
+            
+            
         }
+
+
     }
-}
+      
+        
+
+    }
+
 
 
 
