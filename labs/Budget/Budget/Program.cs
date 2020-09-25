@@ -5,6 +5,7 @@
   */
 
 using System;
+using System.Transactions;
 
 namespace Budget
 {
@@ -13,6 +14,9 @@ class Program
   
         static void Main ( string[] args )
         {
+           
+            
+             
             while (true)
 
 
@@ -74,35 +78,31 @@ class Program
             // get account name
             Console.WriteLine("Account Name: ");
             accountName = Console.ReadLine();
-            //get account number
             Console.WriteLine("Account Number : ");
             accountNumber = ReadInt32(1).ToString();
             //get starting balance
             Console.WriteLine("Starting Balance:");
             startingBalance =  decimalValue(1);
              
-            
-
-
-
-        }
+            }
 
         static char DisplayMenu ()
         {
-            // 1+ iteration, post test
-            // do S while (E);
-            // block statement => { S* }
+            
             do
             {
-                Console.WriteLine("Account information");
-                Console.WriteLine("---------------------");
-                Console.WriteLine("Account Name: ");
-                Console.WriteLine(accountName);
-                Console.WriteLine("Account Number: ");
-                Console.WriteLine(accountNumber);
-                Console.WriteLine("Balance:");
-                Console.WriteLine(startingBalance.ToString("C"));
+               
 
+                Console.WriteLine("accountName: saving ");
+               // accountName = Console.ReadLine();
+                Console.WriteLine(accountName);
+                Console.WriteLine("Enter your Account Number: 12345");
+               // accountNumber = ReadInt32(1).ToString();
+                Console.WriteLine(accountNumber);
+                
+
+                Console.WriteLine("startingBalance:");
+                Console.WriteLine(startingBalance.ToString("C"));
                 Console.WriteLine("A)dd accountInfo");
                 Console.WriteLine("M)oneyAdd account");
                 Console.WriteLine("E)xpenseAdd account");
@@ -222,7 +222,7 @@ class Program
             
             // get add amount 
             Console.WriteLine("Enter your amount ");
-            amount = decimalValue();
+            amount = decimalValue(.01M);
             if (amount >= 0)
               startingBalance = startingBalance + amount;
              // Console.WriteLine(startingBalance);
@@ -245,7 +245,7 @@ class Program
         static void AddAcoountExpense ()
         {
             Console.WriteLine("Enter your amount ");
-            amount = decimalValue();
+            amount = decimalValue(.01M);
             if (amount >= 0)
                startingBalance = startingBalance - amount;
             
