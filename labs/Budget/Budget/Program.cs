@@ -1,8 +1,8 @@
 ﻿/*Bam Bohara
 * Date: 09/02/2020
-  * ITSE 1430
-  * Lab 1
-  */
+ * ITSE 1430
+ * Lab 1
+ */
 
 using System;
 using System.Transactions;
