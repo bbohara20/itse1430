@@ -1,255 +1,254 @@
-﻿/*Bam Bohara
-* Date: 09/02/2020
+﻿/*
  * ITSE 1430
- * Lab 1
+* Budget
+* Sample implementation
+*
+* NOTE: This sample implementation limits the usage of C# features to those covered in section 1. The code given
+ * here should not be construed as appropriate for future lab assignments.
  */
-
 using System;
-using System.Transactions;
 
-namespace Budget
+namespace SampleBudget
 {
-class Program
+    class Program
     {
-  
-        static void Main ( string[] args )
+        static void Main ()
         {
-           
-         while (true)
-            {
+            GetAccountInformation();
 
-            switch (DisplayMenu())
-                  {
-                    case 'Q': QUIT_PROGRAM(); break;
-                    case 'A': AddAccountInfo(); break;
-                    case 'M': AddAccountMoney(); break;
-                    case 'E': AddAcoountExpense(); break;
-                 };
-            };
-        }
-        
-        static string accountName = "";
-        static string accountNumber = "";
-        static decimal startingBalance;
-        static decimal amount;
-        static string description;
-        static string Category;
-        static DateTime date;
-
-      static bool ReadBoolean ()
-        {
+            var done = false;
             do
             {
-                //Read as string
-                string value = Console.ReadLine();
-
-                switch (value.ToLower())
+                switch (DisplayMenu())
                 {
-                    case "X": Console.WriteLine("Wrong value"); break;
-
-                    case "Y":
-                    case "y": return true;
-                    // case "N": 
-                    case "n": return false;
-                    //case "A":
-                    case "a":
-                    {
-                        //Use block statement for more than 1 statement
-                        Console.WriteLine("Wrong value");
-                        Console.WriteLine("Wrong value again");
-                        break;
-                    };
-                    default: break; //if nothing else
+                    case MenuOption.Income: AddIncome(); break;
+                    case MenuOption.Expense: AddExpense(); break;
+                    case MenuOption.Quit: done = ConfirmQuit(); break;
                 };
-
-                DisplayError("Invalid option");
-            } while (true);
+            } while (!done);
         }
 
-        static void AddAccountInfo()
+        /// <summary>Removes money from an account.</summary>
+        static void AddExpense ()
         {
-            // get account name
-            Console.WriteLine("Account Name: ");
-            accountName = Console.ReadLine();
-            Console.WriteLine("Account Number : ");
-            accountNumber = ReadInt32(1).ToString();
-            //get starting balance
-            Console.WriteLine("Starting Balance:");
-            startingBalance =  decimalValue(1);
-             
-            }
+            Console.Write("Enter expense amount: ");
+            var amount = ReadDecimal(0.01M);
 
-        static char DisplayMenu ()
-        {
-           do
-            {
-                Console.WriteLine("Budget program ");
-                Console.WriteLine("-----------------");
-                Console.WriteLine("Enter your account name: ");
-                Console.WriteLine("your account name is: Nickname");
-                Console.WriteLine("Enter your Account Number: ");
-                Console.WriteLine("your account number is: 123456789");
-               //accountNumber = ReadInt32(1).ToString();
-                //Console.WriteLine(accountNumber);
-                Console.WriteLine("startingBalance:");
-                Console.WriteLine(startingBalance.ToString("C"));
-                Console.WriteLine("A)dd accountInfo");
-                Console.WriteLine("M)oneyAdd account");
-                Console.WriteLine("E)xpenseAdd account");
-                Console.WriteLine("Q)uit");
-                //Get input from user
-                string value = Console.ReadLine();
+            Console.Write("Enter description: ");
+            var description = ReadString(true);
 
-                if (value  == "Q" || value == "q")   
-                                     //if (value == "Q")   
-                    if (String.Compare(value, "Q", true) == 0)
-                        return 'Q';
-                if (value  == "A")
-                    return 'A';
-                else if (String.Compare(value, "A", StringComparison.CurrentCultureIgnoreCase) == 0)
-                    return 'A';
-                if (value  == "M" || value == "m")
-                    return 'M';
-                if (value  == "E" || value == "e")
-                    return 'E';
+            Console.Write("Enter category (optional): ");
+            var category = ReadString(false);
 
-               DisplayError("Invalid option");
+            Console.Write("Enter entry date (press ENTER to use Today): ");
+            var entryDate = ReadDate(false, DateTime.Today);
 
-            } while (true);
+            accountBalance -= amount;
+
+            Console.WriteLine($"Removed {amount:C} from account for '{description}' on {entryDate}");
         }
-        static decimal decimalValue ()
+
+        /// <summary>Adds money to an account.</summary>
+        static void AddIncome ()
         {
-            return decimalValue(Decimal.MinValue);
+            Console.Write("Enter income amount: ");
+            var amount = ReadDecimal(0.01M);
+
+            Console.Write("Enter description: ");
+            var description = ReadString(true);
+
+            Console.Write("Enter category (optional): ");
+            var category = ReadString(false);
+
+            Console.Write("Enter entry date (press ENTER to use Today): ");
+            var entryDate = ReadDate(false, DateTime.Now);
+
+            accountBalance += amount;
+
+            Console.WriteLine($"Added {amount:C} to account from '{description}' on {entryDate}");
         }
-        static decimal decimalValue ( decimal minimumValue )
+
+        /// <summary>Confirms the user wants to quit.</summary>
+        /// <returns><see langword="true"/> to quit.</returns>
+        static bool ConfirmQuit ()
         {
-            do
-            {
-                string value = Console.ReadLine();
+            Console.Write("Are you sure (Y/N)? ");
 
-                
-                if (Decimal.TryParse(value, out var result) && result >= minimumValue)
-                    return result;
-
-                if (minimumValue != Decimal.MinValue)   //Int32.MaxValue
-                    DisplayError("Value must be at least " + minimumValue); //String concatenation
-                
-               else
-                    DisplayError("Must be decimal value");
-            }
-            while (true);
+            return ReadBoolean('Y', 'N');
         }
-        static int ReadInt32 ()
+
+        /// <summary>Displays the account information.</summary>
+        static void DisplayAccountInformation ()
         {
-            return ReadInt32(Int32.MinValue);
+            Console.WriteLine();
+            Console.WriteLine($"Account: {accountName} ({accountNumber})");
+            Console.WriteLine($"Balance: {accountBalance:C}");
         }
-        static int ReadInt32 ( int minimumValue )
-        {
-            do
-            {
-                string value = Console.ReadLine();
-                //if (Int32.TryParse(value, out int result) && result >= minimumValue)
-                if (Int32.TryParse(value, out var result) && result >= minimumValue)
-                    return result;
 
-
-                if (minimumValue != Int32.MinValue)   //Int32.MaxValue
-                    DisplayError("Value must be at least " + minimumValue);  
-                else
-                    DisplayError("Must be integral value");
-            } while (true);
-         }
-         static void DisplayError ( string message )
+        /// <summary>Displays an error message.</summary>
+        /// <param name="message">The message to display.</param>
+        static void DisplayError ( string message )
         {
             Console.BackgroundColor = ConsoleColor.Red;
             Console.ForegroundColor = ConsoleColor.White;
+
             Console.WriteLine(message);
+
             Console.ResetColor();
         }
-        static string ReadString ( bool required )
+
+        /// <summary>Displays the main menu.</summary>
+        /// <returns>The menu option.</returns>
+        static MenuOption DisplayMenu ()
         {
-        do
+            DisplayAccountInformation();
+
+            Console.WriteLine("".PadLeft(80, '-'));
+            Console.WriteLine("1) Add Income");
+            Console.WriteLine("2) Add Expense");
+            Console.WriteLine("".PadLeft(5, '-'));
+            Console.WriteLine("0) Quit");
+            Console.WriteLine("? ");
+            do
             {
-              string value = Console.ReadLine();
-                //If not required or not empty return
-                if (!required || value != "")
-                    return value;
-               
-             DisplayError("Value is required");
+                var input = Console.ReadLine().Trim();
+                switch (input)
+                {
+                    case "1": return MenuOption.Income;
+                    case "2": return MenuOption.Expense;
 
+                    case "0": return MenuOption.Quit;
+                };
+
+                DisplayError("Invalid option selected");
             } while (true);
-
         }
 
-        static void QUIT_PROGRAM ()
+        /// <summary>Gets account information.</summary>
+        static void GetAccountInformation ()
         {
-            Console.WriteLine("Is quit program( Y/ N)? ");
+            Console.Write("Enter account name: ");
+            accountName = ReadString(true);
 
-            //title = ReadString(true);
-            string value = ReadString(true);
-            if (value  == "Y" || value == "y")
+            accountNumber = ReadAccountNumber();
+
+            Console.Write("Enter account balance: ");
+            accountBalance = ReadDecimal(0.01M);
+        }
+
+        /// <summary>Determines if a string is a numeric string.</summary>
+        /// <param name="input">The string.</param>
+        /// <returns><see langword="true"/> if numeric string or <see langword="false"/> otherwise.</returns>
+        static bool IsNumericString ( string input )
+        {
+            foreach (var ch in input)
+                if (!Char.IsDigit(ch))
+                    return false;
+
+            return true;
+        }
+
+        /// <summary>Reads account number.</summary>
+        /// <remarks>
+        /// Account number must be all digits.
+        /// </remarks>
+        /// <returns>The account number.</returns>
+        static string ReadAccountNumber ()
+        {
+            do
             {
+                Console.Write("Enter account number (must be digits): ");
 
-                System.Environment.Exit(-1);
-             } else
-               {
-                DisplayMenu();
-                return;
-            }
-          }
-        static void AddAccountMoney()
+                var number = ReadString(true);
+                if (IsNumericString(number))
+                    return number;
+
+                DisplayError("Account number must consist of only digits");
+            } while (true);
+        }
+
+        /// <summary>Reads a boolean value.</summary>
+        /// <param name="trueValue">The value to use for <see langword="true"/>.</param>
+        /// <param name="falseValue">The value to use for <see langword="false"/>.</param>
+        /// <returns>The boolean value.</returns>
+        static bool ReadBoolean ( char trueValue, char falseValue )
         {
-            
-            // get add amount 
-            Console.WriteLine("Enter your amount ");
-            amount = decimalValue(.01M);
-            if (amount >= 0)
-              startingBalance = startingBalance + amount;
-             // Console.WriteLine(startingBalance);
-            //get description
-            Console.WriteLine("Description): ");
-            //string description = Console.ReadLine();
-             description = ReadString(true);
-            //Console.WriteLine(description);
-            Console.WriteLine(" Category  (optional): ");
-            //string description = Console.ReadLine();
-            Category = ReadString(false);
-            // Console.WriteLine(Category);
-            
-            Console.WriteLine("Date: ");
-            // DateTime dateTime = DateTime.UtcNow.Date;
-            date = DateTime.Today;
-            Console.WriteLine(date.ToString("MM/dd/yyyy"));
-            Console.WriteLine();
-            }
-        static void AddAcoountExpense ()
+            do
+            {
+                var key = Console.ReadKey(true);
+
+                if (String.Compare(key.KeyChar.ToString(), trueValue.ToString(), true) == 0)
+                    return true;
+                else if (String.Compare(key.KeyChar.ToString(), falseValue.ToString(), true) == 0)
+                    return false;
+            } while (true);
+        }
+
+        /// <summary>Reads a date.</summary>
+        /// <param name="isRequired"><see langword="true"/> if the value is required.</param>
+        /// <param name="defaultValue">If the value is not required then the value to return when not provided.</param>
+        /// <returns></returns>
+        static DateTime ReadDate ( bool isRequired, DateTime defaultValue )
         {
-            Console.WriteLine("Enter your amount ");
-            amount = decimalValue(.01M);
-            if (amount >= 0)
-                startingBalance = startingBalance - amount;
+            do
+            {
+                var input = ReadString(isRequired);
+                if (!isRequired && String.IsNullOrEmpty(input))
+                    return defaultValue;
 
-            Console.WriteLine("Description): ");
-            //string description = Console.ReadLine();
-            description = ReadString(true);
-            Console.WriteLine(" Category  (optional): ");
-            //string description = Console.ReadLine();
-            Category = ReadString(false);
-            Console.WriteLine("Date: ");
-            // DateTime dateTime = DateTime.UtcNow.Date;
-            date = DateTime.Today;
-            Console.WriteLine(date.ToString("MM/dd/yyyy"));
-            Console.WriteLine();
-          }
+                if (DateTime.TryParse(input, out var date))
+                    return date;
 
+                DisplayError("Enter a valid date");
+            } while (true);
+        }
 
-         }
-      
-        
+        /// <summary>Reads a decimal value.</summary>
+        /// <param name="minimumValue">The optional minimum value.</param>
+        /// <returns>The decimal value.</returns>
+        static decimal ReadDecimal ( decimal minimumValue )
+        {
+            do
+            {
+                var input = Console.ReadLine().Trim();
 
-         }
+                if (Decimal.TryParse(input, out var result) && result >= minimumValue)
+                    return result;
 
+                if (minimumValue != Decimal.MinValue)
+                    DisplayError($"Value must be at least {minimumValue}");
+                else
+                    DisplayError("Value must be a number");
+            } while (true);
+        }
 
+        /// <summary>Reads a string value.</summary>
+        /// <param name="isRequired"><see langword="false"/> to allow empty strings.</param>
+        /// <returns>The value.</returns>
+        static string ReadString ( bool isRequired )
+        {
+            do
+            {
+                var input = Console.ReadLine().Trim();
 
+                if (!isRequired || !String.IsNullOrEmpty(input))
+                    return input;
 
+                DisplayError("Value is required");
+            } while (true);
+        }
 
+        //Using static variables until chapter 2
+        static string accountName;
+        static string accountNumber;
+        static decimal accountBalance;
+
+        //Using an enumeration here to avoid magic constants
+        enum MenuOption
+        {
+            Income,
+            Expense,
+            Quit
+        }
+    }
+}
