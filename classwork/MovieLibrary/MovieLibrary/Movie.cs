@@ -1,6 +1,6 @@
 ﻿/*
  * ITSE 1430
- * Michael Taylor
+ * Bam Bohara
  * Classwork
  */
 using System;

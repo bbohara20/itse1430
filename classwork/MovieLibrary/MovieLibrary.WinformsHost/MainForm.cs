@@ -73,6 +73,11 @@ namespace MovieLibrary.WinformsHost
 
             //TODO: Delete movie
         }
+
+        private void menuStrip1_ItemClicked ( object sender, ToolStripItemClickedEventArgs e )
+        {
+
+        }
     }
 }
 
