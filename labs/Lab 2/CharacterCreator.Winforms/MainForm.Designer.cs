@@ -121,7 +121,8 @@
             // toolStripMenuItem15
             // 
             this.toolStripMenuItem15.Name = "toolStripMenuItem15";
-            this.toolStripMenuItem15.Size = new System.Drawing.Size(107, 22);
+            this.toolStripMenuItem15.ShortcutKeys = System.Windows.Forms.Keys.F1;
+            this.toolStripMenuItem15.Size = new System.Drawing.Size(126, 22);
             this.toolStripMenuItem15.Text = "&About";
             // 
             // toolStripMenuItem1
@@ -187,7 +188,6 @@
             this.MainMenuStrip = this.menuStrip1;
             this.MinimumSize = new System.Drawing.Size(260, 420);
             this.Name = "MainForm";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Character  Creator";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.menuStrip1.ResumeLayout(false);
@@ -216,6 +216,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem14;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem15;
+        private System.Windows.Forms.CheckBox checkBox1;
     }
 }
 
