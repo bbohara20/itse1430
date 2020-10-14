@@ -1,28 +1,32 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.ComponentModel.Design;
-using System.Data;
-using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+//using System.Collections.Generic;
+//using System.ComponentModel;
+//using System.ComponentModel.Design;
+//using System.Data;
+//using System.Drawing;
+//using System.IO;
+//using System.Linq;
+//using System.Text;
+//using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace CharacterCreator.Winforms
 {
     public partial class MainForm : Form
     {
+        
+       
         public MainForm()
         {
             InitializeComponent();
-
-
+           
             toolStripMenuItem11.Click += Exit;
             toolStripMenuItem15.Click += OnAboutFormAdd;
 
-
+            Character character;
+            character = new Character();
+           //member access operator
+            character.Name = "Charisma";
         }
         private void Exit( object sender, EventArgs e )
         {
