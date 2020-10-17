@@ -15,7 +15,21 @@ namespace CharacterCreater.Winforms
         public MainForm()
         {
             InitializeComponent();
+
+            toolStripMenuItem4.Click += Exit;
+            
+
         }
 
+        private void Exit ( object sender, EventArgs e )
+        {
+            Application.Exit();
+        }
+
+        private void menuStrip1_ItemClicked ( object sender, ToolStripItemClickedEventArgs e )
+        {
+
+        }
+        // private void onHelpAbout()
     }
 }
