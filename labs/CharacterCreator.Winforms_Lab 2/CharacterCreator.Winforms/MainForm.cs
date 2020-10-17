@@ -13,7 +13,9 @@ namespace CharacterCreator.Winforms
         {
            InitializeComponent();
 
-          }
+            toolStripMenuItem2.Click += Exit;
+
+        }
         private void Exit ( object sender, EventArgs e )
         {
             Application.Exit();
