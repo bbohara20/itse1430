@@ -1,4 +1,7 @@
-﻿namespace CharacterCreator.Winforms
+﻿using System;
+using System.Windows.Forms;
+
+namespace CharacterCreator.Winforms
 {
     partial class CharacterForm
     {
@@ -28,7 +31,7 @@
         /// </summary>
         private void InitializeComponent ()
         {
-            this.textName = new System.Windows.Forms.TextBox();
+            this.txtName = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -37,8 +40,8 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.comboProfession = new System.Windows.Forms.ComboBox();
-            this.comboRace = new System.Windows.Forms.ComboBox();
+            this.txtComboProfession = new System.Windows.Forms.ComboBox();
+            this.txtComboRace = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
@@ -49,22 +52,22 @@
             this.label13 = new System.Windows.Forms.Label();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
-            this.textStrength = new System.Windows.Forms.ListBox();
-            this.textIntelligence = new System.Windows.Forms.ListBox();
-            this.listBox3 = new System.Windows.Forms.ListBox();
-            this.listBox4 = new System.Windows.Forms.ListBox();
-            this.listBox5 = new System.Windows.Forms.ListBox();
+            this.txtStrength = new System.Windows.Forms.ListBox();
+            this.txtIntelligence = new System.Windows.Forms.ListBox();
+            this.txtAgility = new System.Windows.Forms.ListBox();
+            this.txtConstitution = new System.Windows.Forms.ListBox();
+            this.txtCharisma = new System.Windows.Forms.ListBox();
             this.label14 = new System.Windows.Forms.Label();
-            this.textDescription = new System.Windows.Forms.TextBox();
+            this.txtDescription = new System.Windows.Forms.TextBox();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // textName
+            // txtName
             // 
-            this.textName.Location = new System.Drawing.Point(121, 23);
-            this.textName.Name = "textName";
-            this.textName.Size = new System.Drawing.Size(112, 23);
-            this.textName.TabIndex = 0;
+            this.txtName.Location = new System.Drawing.Point(121, 23);
+            this.txtName.Name = "txtName";
+            this.txtName.Size = new System.Drawing.Size(112, 23);
+            this.txtName.TabIndex = 0;
             // 
             // label1
             // 
@@ -134,37 +137,37 @@
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
             this.toolStripMenuItem2.Size = new System.Drawing.Size(12, 20);
             // 
-            // comboProfession
+            // txtComboProfession
             // 
-            this.comboProfession.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboProfession.FormattingEnabled = true;
-            this.comboProfession.Items.AddRange(new object[] {
+            this.txtComboProfession.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.txtComboProfession.FormattingEnabled = true;
+            this.txtComboProfession.Items.AddRange(new object[] {
             "Fighter",
             "Hunter",
             "Priest",
             "Rogue",
             "Wizard"});
-            this.comboProfession.Location = new System.Drawing.Point(121, 52);
-            this.comboProfession.Name = "comboProfession";
-            this.comboProfession.Size = new System.Drawing.Size(112, 23);
-            this.comboProfession.TabIndex = 8;
-            this.comboProfession.SelectedIndexChanged += new System.EventHandler(this.comboProfession_SelectedIndexChanged);
+            this.txtComboProfession.Location = new System.Drawing.Point(121, 52);
+            this.txtComboProfession.Name = "txtComboProfession";
+            this.txtComboProfession.Size = new System.Drawing.Size(112, 23);
+            this.txtComboProfession.TabIndex = 8;
+            this.txtComboProfession.SelectedIndexChanged += new System.EventHandler(this.comboProfession_SelectedIndexChanged);
             // 
-            // comboRace
+            // txtComboRace
             // 
-            this.comboRace.FormattingEnabled = true;
-            this.comboRace.Items.AddRange(new object[] {
+            this.txtComboRace.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.txtComboRace.FormattingEnabled = true;
+            this.txtComboRace.Items.AddRange(new object[] {
             "Dwarf",
             "Elf",
             "Gnome",
-            "Half",
-            "Elf",
+            "Half Elf",
             "Human"});
-            this.comboRace.Location = new System.Drawing.Point(121, 81);
-            this.comboRace.Name = "comboRace";
-            this.comboRace.Size = new System.Drawing.Size(112, 23);
-            this.comboRace.TabIndex = 9;
-            this.comboRace.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
+            this.txtComboRace.Location = new System.Drawing.Point(121, 81);
+            this.txtComboRace.Name = "txtComboRace";
+            this.txtComboRace.Size = new System.Drawing.Size(112, 23);
+            this.txtComboRace.TabIndex = 9;
+            this.txtComboRace.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
             // 
             // label6
             // 
@@ -247,6 +250,7 @@
             this.btnSave.TabIndex = 25;
             this.btnSave.Text = "save";
             this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.OnSavebtn);
             // 
             // btnCancel
             // 
@@ -256,53 +260,554 @@
             this.btnCancel.TabIndex = 26;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
-            // textStrength
+            // txtStrength
             // 
-            this.textStrength.FormattingEnabled = true;
-            this.textStrength.ItemHeight = 15;
-            this.textStrength.Location = new System.Drawing.Point(121, 114);
-            this.textStrength.Name = "textStrength";
-            this.textStrength.Size = new System.Drawing.Size(112, 19);
-            this.textStrength.TabIndex = 27;
-            this.textStrength.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
+            this.txtStrength.FormattingEnabled = true;
+            this.txtStrength.ItemHeight = 15;
+            this.txtStrength.Items.AddRange(new object[] {
+            "50",
+            "1",
+            "2",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20",
+            "21",
+            "22",
+            "23",
+            "24",
+            "25",
+            "26",
+            "27",
+            "28",
+            "29",
+            "30",
+            "31",
+            "32",
+            "33",
+            "34",
+            "35",
+            "36",
+            "37",
+            "38",
+            "39",
+            "40",
+            "41",
+            "42",
+            "43",
+            "44",
+            "45",
+            "46",
+            "47",
+            "48",
+            "49",
+            "51",
+            "52",
+            "53",
+            "54",
+            "55",
+            "56",
+            "57",
+            "58",
+            "59",
+            "60",
+            "61",
+            "62",
+            "63",
+            "64",
+            "65",
+            "66",
+            "67",
+            "68",
+            "69",
+            "70",
+            "71",
+            "72",
+            "73",
+            "74",
+            "75",
+            "76",
+            "77",
+            "78",
+            "79",
+            "80",
+            "81",
+            "82",
+            "83",
+            "84",
+            "85",
+            "86",
+            "87",
+            "88",
+            "89",
+            "90",
+            "91",
+            "92",
+            "93",
+            "94",
+            "95",
+            "96",
+            "97",
+            "98",
+            "99",
+            "100"});
+            this.txtStrength.Location = new System.Drawing.Point(121, 110);
+            this.txtStrength.Name = "txtStrength";
+            this.txtStrength.Size = new System.Drawing.Size(112, 19);
+            this.txtStrength.TabIndex = 27;
+            this.txtStrength.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
-            // textIntelligence
+            // txtIntelligence
             // 
-            this.textIntelligence.FormattingEnabled = true;
-            this.textIntelligence.ItemHeight = 15;
-            this.textIntelligence.Location = new System.Drawing.Point(121, 135);
-            this.textIntelligence.Name = "textIntelligence";
-            this.textIntelligence.Size = new System.Drawing.Size(112, 19);
-            this.textIntelligence.TabIndex = 28;
+            this.txtIntelligence.FormattingEnabled = true;
+            this.txtIntelligence.ItemHeight = 15;
+            this.txtIntelligence.Items.AddRange(new object[] {
+            "50",
+            "1",
+            "2",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20",
+            "21",
+            "22",
+            "23",
+            "24",
+            "25",
+            "26",
+            "27",
+            "28",
+            "29",
+            "30",
+            "31",
+            "32",
+            "33",
+            "34",
+            "35",
+            "36",
+            "37",
+            "38",
+            "39",
+            "40",
+            "41",
+            "42",
+            "43",
+            "44",
+            "45",
+            "46",
+            "47",
+            "48",
+            "49",
+            "51",
+            "52",
+            "53",
+            "54",
+            "55",
+            "56",
+            "57",
+            "58",
+            "59",
+            "60",
+            "61",
+            "62",
+            "63",
+            "64",
+            "65",
+            "66",
+            "67",
+            "68",
+            "69",
+            "70",
+            "71",
+            "72",
+            "73",
+            "74",
+            "75",
+            "76",
+            "77",
+            "78",
+            "79",
+            "80",
+            "81",
+            "82",
+            "83",
+            "84",
+            "85",
+            "86",
+            "87",
+            "88",
+            "89",
+            "90",
+            "91",
+            "92",
+            "93",
+            "94",
+            "95",
+            "96",
+            "97",
+            "98",
+            "99",
+            "100"});
+            this.txtIntelligence.Location = new System.Drawing.Point(121, 135);
+            this.txtIntelligence.Name = "txtIntelligence";
+            this.txtIntelligence.Size = new System.Drawing.Size(112, 19);
+            this.txtIntelligence.TabIndex = 28;
             // 
-            // listBox3
+            // txtAgility
             // 
-            this.listBox3.FormattingEnabled = true;
-            this.listBox3.ItemHeight = 15;
-            this.listBox3.Location = new System.Drawing.Point(121, 160);
-            this.listBox3.Name = "listBox3";
-            this.listBox3.Size = new System.Drawing.Size(112, 19);
-            this.listBox3.TabIndex = 29;
+            this.txtAgility.FormattingEnabled = true;
+            this.txtAgility.ItemHeight = 15;
+            this.txtAgility.Items.AddRange(new object[] {
+            "50",
+            "1",
+            "2",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20",
+            "21",
+            "22",
+            "23",
+            "24",
+            "25",
+            "26",
+            "27",
+            "28",
+            "29",
+            "30",
+            "31",
+            "32",
+            "33",
+            "34",
+            "35",
+            "36",
+            "37",
+            "38",
+            "39",
+            "40",
+            "41",
+            "42",
+            "43",
+            "44",
+            "45",
+            "46",
+            "47",
+            "48",
+            "49",
+            "51",
+            "52",
+            "53",
+            "54",
+            "55",
+            "56",
+            "57",
+            "58",
+            "59",
+            "60",
+            "61",
+            "62",
+            "63",
+            "64",
+            "65",
+            "66",
+            "67",
+            "68",
+            "69",
+            "70",
+            "71",
+            "72",
+            "73",
+            "74",
+            "75",
+            "76",
+            "77",
+            "78",
+            "79",
+            "80",
+            "81",
+            "82",
+            "83",
+            "84",
+            "85",
+            "86",
+            "87",
+            "88",
+            "89",
+            "90",
+            "91",
+            "92",
+            "93",
+            "94",
+            "95",
+            "96",
+            "97",
+            "98",
+            "99",
+            "100"});
+            this.txtAgility.Location = new System.Drawing.Point(121, 160);
+            this.txtAgility.Name = "txtAgility";
+            this.txtAgility.Size = new System.Drawing.Size(112, 19);
+            this.txtAgility.TabIndex = 29;
             // 
-            // listBox4
+            // txtConstitution
             // 
-            this.listBox4.FormattingEnabled = true;
-            this.listBox4.ItemHeight = 15;
-            this.listBox4.Location = new System.Drawing.Point(121, 185);
-            this.listBox4.Name = "listBox4";
-            this.listBox4.Size = new System.Drawing.Size(112, 19);
-            this.listBox4.TabIndex = 30;
+            this.txtConstitution.FormattingEnabled = true;
+            this.txtConstitution.ItemHeight = 15;
+            this.txtConstitution.Items.AddRange(new object[] {
+            "50",
+            "1",
+            "2",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20",
+            "21",
+            "22",
+            "23",
+            "24",
+            "25",
+            "26",
+            "27",
+            "28",
+            "29",
+            "30",
+            "31",
+            "32",
+            "33",
+            "34",
+            "35",
+            "36",
+            "37",
+            "38",
+            "39",
+            "40",
+            "41",
+            "42",
+            "43",
+            "44",
+            "45",
+            "46",
+            "47",
+            "48",
+            "49",
+            "51",
+            "52",
+            "53",
+            "54",
+            "55",
+            "56",
+            "57",
+            "58",
+            "59",
+            "60",
+            "61",
+            "62",
+            "63",
+            "64",
+            "65",
+            "66",
+            "67",
+            "68",
+            "69",
+            "70",
+            "71",
+            "72",
+            "73",
+            "74",
+            "75",
+            "76",
+            "77",
+            "78",
+            "79",
+            "80",
+            "81",
+            "82",
+            "83",
+            "84",
+            "85",
+            "86",
+            "87",
+            "88",
+            "89",
+            "90",
+            "91",
+            "92",
+            "93",
+            "94",
+            "95",
+            "96",
+            "97",
+            "98",
+            "99",
+            "100"});
+            this.txtConstitution.Location = new System.Drawing.Point(121, 185);
+            this.txtConstitution.Name = "txtConstitution";
+            this.txtConstitution.Size = new System.Drawing.Size(112, 19);
+            this.txtConstitution.TabIndex = 30;
             // 
-            // listBox5
+            // txtCharisma
             // 
-            this.listBox5.FormattingEnabled = true;
-            this.listBox5.ItemHeight = 15;
-            this.listBox5.Location = new System.Drawing.Point(121, 210);
-            this.listBox5.Name = "listBox5";
-            this.listBox5.Size = new System.Drawing.Size(112, 19);
-            this.listBox5.TabIndex = 31;
-            this.listBox5.SelectedIndexChanged += new System.EventHandler(this.listBox5_SelectedIndexChanged);
+            this.txtCharisma.FormattingEnabled = true;
+            this.txtCharisma.ItemHeight = 15;
+            this.txtCharisma.Items.AddRange(new object[] {
+            "50",
+            "1",
+            "2",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20",
+            "21",
+            "22",
+            "23",
+            "24",
+            "25",
+            "26",
+            "27",
+            "28",
+            "29",
+            "30",
+            "31",
+            "32",
+            "33",
+            "34",
+            "35",
+            "36",
+            "37",
+            "38",
+            "39",
+            "40",
+            "41",
+            "42",
+            "43",
+            "44",
+            "45",
+            "46",
+            "47",
+            "48",
+            "49",
+            "51",
+            "52",
+            "53",
+            "54",
+            "55",
+            "56",
+            "57",
+            "58",
+            "59",
+            "60",
+            "61",
+            "62",
+            "63",
+            "64",
+            "65",
+            "66",
+            "67",
+            "68",
+            "69",
+            "70",
+            "71",
+            "72",
+            "73",
+            "74",
+            "75",
+            "76",
+            "77",
+            "78",
+            "79",
+            "80",
+            "81",
+            "82",
+            "83",
+            "84",
+            "85",
+            "86",
+            "87",
+            "88",
+            "89",
+            "90",
+            "91",
+            "92",
+            "93",
+            "94",
+            "95",
+            "96",
+            "97",
+            "98",
+            "99",
+            "100"});
+            this.txtCharisma.Location = new System.Drawing.Point(121, 210);
+            this.txtCharisma.Name = "txtCharisma";
+            this.txtCharisma.Size = new System.Drawing.Size(112, 19);
+            this.txtCharisma.TabIndex = 31;
+            this.txtCharisma.SelectedIndexChanged += new System.EventHandler(this.listBox5_SelectedIndexChanged);
             // 
             // label14
             // 
@@ -313,25 +818,25 @@
             this.label14.TabIndex = 32;
             this.label14.Text = "Description";
             // 
-            // textDescription
+            // txtDescription
             // 
-            this.textDescription.Location = new System.Drawing.Point(121, 235);
-            this.textDescription.Name = "textDescription";
-            this.textDescription.Size = new System.Drawing.Size(112, 23);
-            this.textDescription.TabIndex = 33;
+            this.txtDescription.Location = new System.Drawing.Point(121, 235);
+            this.txtDescription.Name = "txtDescription";
+            this.txtDescription.Size = new System.Drawing.Size(112, 23);
+            this.txtDescription.TabIndex = 33;
             // 
             // CharacterForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 411);
-            this.Controls.Add(this.textDescription);
+            this.Controls.Add(this.txtDescription);
             this.Controls.Add(this.label14);
-            this.Controls.Add(this.listBox5);
-            this.Controls.Add(this.listBox4);
-            this.Controls.Add(this.listBox3);
-            this.Controls.Add(this.textIntelligence);
-            this.Controls.Add(this.textStrength);
+            this.Controls.Add(this.txtCharisma);
+            this.Controls.Add(this.txtConstitution);
+            this.Controls.Add(this.txtAgility);
+            this.Controls.Add(this.txtIntelligence);
+            this.Controls.Add(this.txtStrength);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.label13);
@@ -342,14 +847,14 @@
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.comboRace);
-            this.Controls.Add(this.comboProfession);
+            this.Controls.Add(this.txtComboRace);
+            this.Controls.Add(this.txtComboProfession);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.textName);
+            this.Controls.Add(this.txtName);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.MaximizeBox = false;
@@ -368,9 +873,40 @@
 
         }
 
-        #endregion
+        private void btnCancel_Click ( object sender, EventArgs e )
+        {
+            Close();
+        }
 
-        private System.Windows.Forms.TextBox textName;
+        private void OnSavebtn ( object sender, EventArgs e )
+        {
+            var character = new Character();
+            character.Name = txtName.Text;
+            character.Profession =txtComboProfession.SelectedText;
+            character.Race = txtComboRace.SelectedText;
+            character.Strength = ReadAsInt32(txtStrength);
+            character.Intelligence = ReadAsInt32(txtIntelligence);
+            character.Agility = ReadAsInt32(txtAgility);
+            character.Constitution = ReadAsInt32(txtConstitution);
+            character.Charisma = ReadAsInt32(txtCharisma);
+
+            // Validation
+            var error = character.Validate();
+            if (!String.IsNullOrEmpty(error))
+            {
+                // Show error message
+                MessageBox.Show(error, "Save failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Close();
+                return;
+
+            };
+              //Return character
+                //Close();
+        
+            } 
+             #endregion
+
+        private System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
@@ -379,8 +915,8 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
-        private System.Windows.Forms.ComboBox comboProfession;
-        private System.Windows.Forms.ComboBox comboRace;
+        private System.Windows.Forms.ComboBox txtComboProfession;
+        private System.Windows.Forms.ComboBox txtComboRace;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
@@ -392,12 +928,12 @@
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.TextBox _textname;
-        private System.Windows.Forms.ListBox textStrength;
-        private System.Windows.Forms.ListBox textIntelligence;
-        private System.Windows.Forms.ListBox listBox3;
-        private System.Windows.Forms.ListBox listBox4;
-        private System.Windows.Forms.ListBox listBox5;
+        private System.Windows.Forms.ListBox txtStrength;
+        private System.Windows.Forms.ListBox txtIntelligence;
+        private System.Windows.Forms.ListBox txtAgility;
+        private System.Windows.Forms.ListBox txtConstitution;
+        private System.Windows.Forms.ListBox txtCharisma;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.TextBox textDescription;
+        private System.Windows.Forms.TextBox txtDescription;
     }
 }

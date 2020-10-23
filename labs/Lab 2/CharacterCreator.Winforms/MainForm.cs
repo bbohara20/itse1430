@@ -34,10 +34,24 @@ namespace CharacterCreator.Winforms
            //member access operator
             character.Name = "Charisma";
             character.description = "Role Playing Game";
+           }
+        private void OnCharacterAdd ( object sender, EventArgs e )
+        {
+            var form = new CharacterForm();
 
+            // ShowDialog - modal ::= user must interact with child form, cannot access parent
+            // Show - modeless ::= multiple window open and accessible at same time
+            var result = form.ShowDialog(this);  //Blocks until form is dismissed
+            if (result == DialogResult.Cancel)
+                return;
 
-
+            //After form is gone
+            //TODO: Save character
+            _character =  form.Character;
+            //var result = form.ShowDialog(this);
+            MessageBox.Show("Save successful");
         }
+         private Character _character;
         private void Exit( object sender, EventArgs e )
         {
             Application.Exit();
@@ -86,10 +100,10 @@ namespace CharacterCreator.Winforms
              var result = form.ShowDialog(this);  
             if (result == DialogResult.Cancel)
                 return;
-
-            
             //TODO: Save Character
+            _character = form.Character;
             MessageBox.Show("Save successful");
+            
         }
 
 

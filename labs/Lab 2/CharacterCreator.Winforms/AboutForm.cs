@@ -14,7 +14,8 @@ namespace CharacterCreator.Winforms
         {
             InitializeComponent();
         }
-        public void okButton_click ( object sender, EventArgs e )
+        
+        public void Button1_click ( object sender, EventArgs e )
         {
             Close();
         }
@@ -61,7 +62,7 @@ namespace CharacterCreator.Winforms
         
         private void button1_Click ( object sender, EventArgs e )
         {
-           
+            Close();
             
 
         }

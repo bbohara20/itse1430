@@ -1,9 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
+//using System.Collections.Generic;
+//using System.ComponentModel;
+//using System.Data;
+//using System.Drawing;
+//using System.Text;
 using System.Windows.Forms;
 
 namespace CharacterCreator.Winforms
@@ -14,7 +14,11 @@ namespace CharacterCreator.Winforms
         {
             InitializeComponent();
         }
-
+        public Character Character { get; set; }
+        private void onCancel (object sender, EventArgs e)
+        {
+            Close();
+        }
         private void menuStrip1_ItemClicked ( object sender, ToolStripItemClickedEventArgs e )
         {
 
@@ -79,5 +83,47 @@ namespace CharacterCreator.Winforms
         {
 
         }
+
+       private void OnSave( object sender, EventArgs e )
+       {
+            var character = new Character();
+            character.Name = txtName.Text;
+            character.Profession =txtComboProfession.SelectedText;
+            character.Race = txtComboRace.SelectedText;
+            character.Strength = ReadAsInt32(txtStrength);
+            character.Intelligence = ReadAsInt32(txtIntelligence);
+            character.Agility = ReadAsInt32(txtAgility);
+            character.Constitution = ReadAsInt32(txtConstitution);
+            character.Charisma = ReadAsInt32(txtCharisma);
+
+            // Validation
+            var error = character.Validate();
+            if (!String.IsNullOrEmpty(error))
+            {
+                // Show error message
+                MessageBox.Show(this, error, "Save failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                DialogResult =DialogResult.None;
+               Close();
+                return;
+
+              };
+             //Return character
+            Character = character;
+            Close();
+            
+         }
+        private int ReadAsInt32 ( Control control)
+        {
+            var text = control.Text;
+            if (Int32.TryParse(text, out var result))
+                return result;
+            return -1;
+        }
+
+        private void btnCance1_Click ( object sender, EventArgs e )
+        {
+           Close ();
+        }
+        
     }
 }
