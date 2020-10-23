@@ -877,7 +877,7 @@ namespace CharacterCreator.Winforms
         {
             Close();
         }
-
+        
         private void OnSavebtn ( object sender, EventArgs e )
         {
             var character = new Character();
@@ -895,13 +895,33 @@ namespace CharacterCreator.Winforms
             if (!String.IsNullOrEmpty(error))
             {
                 // Show error message
-                MessageBox.Show(error, "Save failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(this, error, "Save failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                DialogResult =DialogResult.None;
                 Close();
                 return;
 
-            };
-              //Return character
-                //Close();
+               };
+            //Return character
+           // MessageBox.Show(character.Name);
+            Character = character;
+            MessageBox.Show(Character.Name);
+            Close();
+
+        
+
+        //var character = new Character();
+        //character.Name = txtName.Text;
+        //character.Profession =txtComboProfession.SelectedText;
+        //character.Race = txtComboRace.SelectedText;
+        //character.Strength = ReadAsInt32(txtStrength);
+        //character.Intelligence = ReadAsInt32(txtIntelligence);
+        //character.Agility = ReadAsInt32(txtAgility);
+        //character.Constitution = ReadAsInt32(txtConstitution);
+        //character.Charisma = ReadAsInt32(txtCharisma);
+
+        // Validation
+       // Return character
+               //Close ();
         
             } 
              #endregion
