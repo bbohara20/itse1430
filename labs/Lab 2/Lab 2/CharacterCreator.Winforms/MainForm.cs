@@ -7,9 +7,9 @@ using System.Windows.Forms;
 namespace CharacterCreator.Winforms
 {
     public partial class MainForm : Form
-      {
+    {
         public MainForm ()
-         {
+        {
             InitializeComponent();
 
             toolStripMenuItem11.Click += Exit;
@@ -36,11 +36,11 @@ namespace CharacterCreator.Winforms
             _character = form.SelectedCharacter;
             RefreshRoster();
 
-            }
+        }
         private void Exit ( object sender, EventArgs e )
         {
             Application.Exit();
-         }
+        }
         private void Form1_Load ( object sender, EventArgs e )
         {
 
@@ -56,7 +56,7 @@ namespace CharacterCreator.Winforms
             var result = form.ShowDialog(this);
             if (result == DialogResult.Cancel)
                 return;
-              }
+        }
 
         private void RefreshRoster ()
         {
@@ -69,14 +69,14 @@ namespace CharacterCreator.Winforms
             roster[0] = _character;
             firstCharacter.DataSource = roster;
             firstCharacter.DisplayMember = nameof(Character.Name);
-           }
+        }
         private void OnCharacterDelete ( object sender, EventArgs e )
         {
             var character = GetSelectedCharacter();
             if (character == null)
                 return;
 
-          if (MessageBox.Show(this, $"Are you sure you want to delete {character.Name}?", "Delete?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+            if (MessageBox.Show(this, $"Are you sure you want to delete {character.Name}?", "Delete?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
                 return;
 
             _character = null;
@@ -97,13 +97,13 @@ namespace CharacterCreator.Winforms
             _character = form.SelectedCharacter;
             RefreshRoster();
             MessageBox.Show("Save successful");
-           }
+        }
         private Character GetSelectedCharacter ()
         {
             return _character;
         }
 
-       private Character _character;
-     }
+        private Character _character;
+    }
 
- }
+}

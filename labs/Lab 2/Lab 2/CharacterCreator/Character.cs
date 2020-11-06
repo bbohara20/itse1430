@@ -50,14 +50,14 @@ namespace CharacterCreator
         {
             return Name;
         }
-       
+
 
     }
-    
+
 }
 
 
-          
+
 
 
 

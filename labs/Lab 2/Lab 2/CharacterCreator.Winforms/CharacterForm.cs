@@ -68,8 +68,7 @@ namespace CharacterCreator.Winforms
             character.Agility = (int)_txtAgility.Value;
             character.Constitution = (int)_txtConstitution.Value;
             character.Charisma = (int)_txtCharisma.Value;
-            _txtDescription.Text = (string)_txtDescription.Text;
-            // character.Description = _txtDescription.Text;
+            character.Description = _txtDescription.Text;
 
 
             // Validation
@@ -80,17 +79,17 @@ namespace CharacterCreator.Winforms
                 MessageBox.Show(this, error, "Save failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 DialogResult = DialogResult.None;
                 return;
-              }
-
-            {
-                
-              SelectedCharacter = character;
-                Close();
-            }
             }
 
-         private void LoadUI ()
-         {
+
+
+            SelectedCharacter = character;
+            Close();
+
+        }
+
+        private void LoadUI ()
+        {
 
             if (SelectedCharacter != null)
             {
@@ -104,14 +103,15 @@ namespace CharacterCreator.Winforms
             _txtName.Text = character.Name;
             _CbProfession.Text = character.Profession;
             _CbRace.Text = character.Race;
-            _txtDescription.Text = _txtDescription.Text;
+            _txtDescription.Text =character.Description;
 
             _txtStrength.Value = character.Strength;
             _txtIntelligence.Value = character.Intelligence;
             _txtAgility.Value = character.Agility;
             _txtConstitution.Value = character.Constitution;
             _txtCharisma.Value = character.Charisma;
-              }
+
+        }
 
 
         private int ReadAsInt32 ( Control control )
