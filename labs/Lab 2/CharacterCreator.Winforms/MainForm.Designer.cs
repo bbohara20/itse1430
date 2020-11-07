@@ -46,7 +46,7 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripMenuItem7 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
-            this.IstCharacter = new System.Windows.Forms.ListBox();
+            this._IstCharacter = new System.Windows.Forms.ListBox();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -184,24 +184,24 @@
             this.toolStripMenuItem3.Size = new System.Drawing.Size(44, 20);
             this.toolStripMenuItem3.Text = "&Help";
             // 
-            // IstCharacter
+            // _IstCharacter
             // 
-            this.IstCharacter.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this._IstCharacter.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.IstCharacter.FormattingEnabled = true;
-            this.IstCharacter.ItemHeight = 15;
-            this.IstCharacter.Location = new System.Drawing.Point(0, 27);
-            this.IstCharacter.Name = "IstCharacter";
-            this.IstCharacter.Size = new System.Drawing.Size(284, 379);
-            this.IstCharacter.TabIndex = 2;
+            this._IstCharacter.FormattingEnabled = true;
+            this._IstCharacter.ItemHeight = 15;
+            this._IstCharacter.Location = new System.Drawing.Point(0, 27);
+            this._IstCharacter.Name = "_IstCharacter";
+            this._IstCharacter.Size = new System.Drawing.Size(284, 379);
+            this._IstCharacter.TabIndex = 2;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 411);
-            this.Controls.Add(this.IstCharacter);
+            this.Controls.Add(this._IstCharacter);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.MaximizeBox = false;
@@ -237,7 +237,7 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem14;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem15;
         private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.ListBox IstCharacter;
+        private System.Windows.Forms.ListBox _IstCharacter;
     }
 }
 

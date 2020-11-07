@@ -60,15 +60,15 @@ namespace CharacterCreator.Winforms
 
         private void RefreshRoster ()
         {
-            IstCharacter.DataSource = null;
+            _IstCharacter.DataSource = null;
 
             if (_character == null)
                 return;
 
             var roster = new Character[1];
             roster[0] = _character;
-            IstCharacter.DataSource = roster;
-            IstCharacter.DisplayMember = nameof(Character.Name);
+            _IstCharacter.DataSource = roster;
+            _IstCharacter.DisplayMember = nameof(Character.Name);
         }
         private void OnCharacterDelete ( object sender, EventArgs e )
         {
