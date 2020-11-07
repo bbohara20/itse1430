@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30517.126
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CharacterCreator.Winforms", "CharacterCreator.Winforms\CharacterCreator.Winforms.csproj", "{285A9800-F3AF-4C3E-8F6C-10C5A56095AB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "UI", "{248AC864-C5CE-4C25-A407-E3B112B18665}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CharacterCreator", "CharacterCreator\CharacterCreator.csproj", "{68F8507D-52D9-4FEC-BAE5-33D5CF1C1633}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{285A9800-F3AF-4C3E-8F6C-10C5A56095AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{285A9800-F3AF-4C3E-8F6C-10C5A56095AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{285A9800-F3AF-4C3E-8F6C-10C5A56095AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{285A9800-F3AF-4C3E-8F6C-10C5A56095AB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{68F8507D-52D9-4FEC-BAE5-33D5CF1C1633}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{68F8507D-52D9-4FEC-BAE5-33D5CF1C1633}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{68F8507D-52D9-4FEC-BAE5-33D5CF1C1633}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{68F8507D-52D9-4FEC-BAE5-33D5CF1C1633}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FABBB35B-3189-430A-A323-C1635CB33985}
+	EndGlobalSection
+EndGlobal
