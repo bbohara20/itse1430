@@ -31,6 +31,7 @@ namespace CharacterCreator.Winforms
         /// </summary>
         private void InitializeComponent ()
         {
+            this.components = new System.ComponentModel.Container();
             this._txtName = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -59,12 +60,18 @@ namespace CharacterCreator.Winforms
             this._txtAgility = new System.Windows.Forms.NumericUpDown();
             this._txtConstitution = new System.Windows.Forms.NumericUpDown();
             this._txtCharisma = new System.Windows.Forms.NumericUpDown();
+            this._error1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this._error2 = new System.Windows.Forms.ErrorProvider(this.components);
+            this._error3 = new System.Windows.Forms.ErrorProvider(this.components);
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this._txtStrength)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._txtIntelligence)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._txtAgility)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._txtConstitution)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._txtCharisma)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this._error1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this._error2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this._error3)).BeginInit();
             this.SuspendLayout();
             // 
             // _txtName
@@ -73,6 +80,7 @@ namespace CharacterCreator.Winforms
             this._txtName.Name = "_txtName";
             this._txtName.Size = new System.Drawing.Size(112, 23);
             this._txtName.TabIndex = 0;
+            this._txtName.Validating += new System.ComponentModel.CancelEventHandler(this.OnValidateName);
             // 
             // label1
             // 
@@ -158,6 +166,7 @@ namespace CharacterCreator.Winforms
             this._CbProfession.Size = new System.Drawing.Size(112, 23);
             this._CbProfession.TabIndex = 8;
             this._CbProfession.SelectedIndexChanged += new System.EventHandler(this.comboProfession_SelectedIndexChanged);
+            this._CbProfession.Validating += new System.ComponentModel.CancelEventHandler(this.OnValidatedProfession);
             // 
             // _CbRace
             // 
@@ -174,6 +183,7 @@ namespace CharacterCreator.Winforms
             this._CbRace.Size = new System.Drawing.Size(112, 23);
             this._CbRace.TabIndex = 9;
             this._CbRace.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
+            this._CbRace.Validating += new System.ComponentModel.CancelEventHandler(this.OnValidatedRace);
             // 
             // label6
             // 
@@ -257,7 +267,7 @@ namespace CharacterCreator.Winforms
             this.btnSave.TabIndex = 25;
             this.btnSave.Text = "save";
             this.btnSave.UseVisualStyleBackColor = true;
-            this.btnSave.Click += new System.EventHandler(this.OnSave);
+            this.btnSave.Click += new System.EventHandler(this.OnSavebtn);
             // 
             // btnCancel
             // 
@@ -360,14 +370,14 @@ namespace CharacterCreator.Winforms
             // 
             // _txtCharisma
             // 
-            this._txtCharisma.Location = new System.Drawing.Point(119, 210);
+            this._txtCharisma.Location = new System.Drawing.Point(120, 210);
             this._txtCharisma.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
             this._txtCharisma.Name = "_txtCharisma";
-            this._txtCharisma.Size = new System.Drawing.Size(141, 23);
+            this._txtCharisma.Size = new System.Drawing.Size(110, 23);
             this._txtCharisma.TabIndex = 38;
             this._txtCharisma.Tag = "Charisma";
             this._txtCharisma.Value = new decimal(new int[] {
@@ -375,6 +385,18 @@ namespace CharacterCreator.Winforms
             0,
             0,
             0});
+            // 
+            // _error1
+            // 
+            this._error1.ContainerControl = this;
+            // 
+            // _error2
+            // 
+            this._error2.ContainerControl = this;
+            // 
+            // _error3
+            // 
+            this._error3.ContainerControl = this;
             // 
             // CharacterForm
             // 
@@ -425,6 +447,9 @@ namespace CharacterCreator.Winforms
             ((System.ComponentModel.ISupportInitialize)(this._txtAgility)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this._txtConstitution)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this._txtCharisma)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this._error1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this._error2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this._error3)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -448,16 +473,16 @@ namespace CharacterCreator.Winforms
             character.Charisma = ReadAsInt32(_txtCharisma);
 
             // Validation
-            var error = character.Validate();
-            if (!String.IsNullOrEmpty(error))
-            {
-                // Show error message
-                MessageBox.Show(this, error, "Save failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                DialogResult =DialogResult.None;
-                Close();
-                return;
+            //var error = character.Validate();
+            //if (!String.IsNullOrEmpty(error))
+            //{
+            //    // Show error message
+            //    MessageBox.Show(this, error, "Save failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    DialogResult =DialogResult.None;
+            //    Close();
+            //    return;
 
-               };
+            //   };
             //Return character
            // MessageBox.Show(character.Name);
             SelectedCharacter = character;
@@ -512,5 +537,8 @@ namespace CharacterCreator.Winforms
         private NumericUpDown _txtAgility;
         private NumericUpDown _txtConstitution;
         private NumericUpDown _txtCharisma;
+        private ErrorProvider _error1;
+        private ErrorProvider _error2;
+        private ErrorProvider _error3;
     }
 }

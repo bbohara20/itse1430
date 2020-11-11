@@ -3,7 +3,10 @@
  *Lab: Character Creator
  */
 using System;
+using System.Linq;
 using System.Windows.Forms;
+using System.Collections.Generic;
+
 namespace CharacterCreator.Winforms
 {
     public partial class MainForm : Form
@@ -32,11 +35,12 @@ namespace CharacterCreator.Winforms
             if (form.ShowDialog(this) == DialogResult.Cancel)
                 return;
 
-            //Add the character
-            _character = form.SelectedCharacter;
-            RefreshRoster();
+            //Add the character 
+          AddCharacter(form.SelectedCharacter);
+            RefreshUI();
 
         }
+
         private void Exit ( object sender, EventArgs e )
         {
             Application.Exit();
@@ -60,15 +64,15 @@ namespace CharacterCreator.Winforms
 
         private void RefreshRoster ()
         {
-            firstCharacter.DataSource = null;
+            _IstCharacter.DataSource = null;
 
             if (_character == null)
                 return;
 
             var roster = new Character[1];
-            roster[0] = _character;
-            firstCharacter.DataSource = roster;
-            firstCharacter.DisplayMember = nameof(Character.Name);
+            roster[0] = (Character)_character; 
+            _IstCharacter.DataSource = roster;
+            _IstCharacter.DisplayMember = nameof(Character.Name);
         }
         private void OnCharacterDelete ( object sender, EventArgs e )
         {
@@ -78,9 +82,9 @@ namespace CharacterCreator.Winforms
 
             if (MessageBox.Show(this, $"Are you sure you want to delete {character.Name}?", "Delete?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
                 return;
-
-            _character = null;
-            RefreshRoster();
+            _character.Delete(character.id);
+            
+            RefreshUI();
         }
         private void OnCharacterEdit ( object sender, EventArgs e )
         {
@@ -93,17 +97,70 @@ namespace CharacterCreator.Winforms
 
             if (form.ShowDialog(this) == DialogResult.Cancel)
                 return;
+            EditCharacter(character.id, form.SelectedCharacter);
+           // var characters = _character;
+           //var _character = form.SelectedCharacter;
+            // _character.Update(character.id);
 
-            _character = form.SelectedCharacter;
-            RefreshRoster();
+            RefreshUI();
             MessageBox.Show("Save successful");
         }
         private Character GetSelectedCharacter ()
         {
-            return _character;
+            return _IstCharacter.SelectedItem as Character; 
+        }
+        
+
+        private ICharacterRoster _character = new MemoryCharacterRoster();
+        private void AddCharacter ( Character character )
+        {
+            var characters = _character;
+          
+            characters.Add(character);
+            
+
+            RefreshUI();
+
+            
+        }
+        private int RefreshUI ()
+        {
+            var items = _character.GetAll().ToArray();
+
+            _IstCharacter.DataSource  = items;
+            
+            return items.Length;
+        }
+        
+        private void DeleteCharacter ( int id)
+        {
+            _character.Delete( id);
+            RefreshUI();
+
+
+            }
+        private void EditCharacter ( int id, Character character )
+        {
+            _character.Update(id, character);
+            RefreshUI();
         }
 
-        private Character _character;
+        private void _IstCharacter_SelectedIndexChanged ( object sender, EventArgs e )
+        {
+
+        }
     }
 
+
+
 }
+
+
+
+
+
+
+
+
+
+

@@ -4,6 +4,9 @@
  *Lab: Character Creator
  */
 using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using System.Windows.Forms;
 namespace CharacterCreator.Winforms
 {
@@ -55,35 +58,22 @@ namespace CharacterCreator.Winforms
 
         private void comboProfession_SelectedIndexChanged ( object sender, EventArgs e )
         {
+           
 
         }
         private void OnSave ( object sender, EventArgs e )
         {
             var character = new Character();
             character.Name = _txtName.Text;
-            character.Profession = _CbProfession.Text;
+            character.Profession =_CbProfession.Text;
             character.Race = _CbRace.Text;
-            character.Strength = (int)_txtStrength.Value;
-            character.Intelligence = (int)_txtIntelligence.Value;
-            character.Agility = (int)_txtAgility.Value;
-            character.Constitution = (int)_txtConstitution.Value;
-            character.Charisma = (int)_txtCharisma.Value;
-            character.Description = _txtDescription.Text;
-
-
-            // Validation
-            var error = character.Validate();
-            if (!String.IsNullOrEmpty(error))
-            {
-                // Show error message
-                MessageBox.Show(this, error, "Save failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                DialogResult = DialogResult.None;
-                return;
-            }
-
-
-
+            character.Strength = ReadAsInt32(_txtStrength);
+            character.Intelligence = ReadAsInt32(_txtIntelligence);
+            character.Agility = ReadAsInt32(_txtAgility);
+            character.Constitution = ReadAsInt32(_txtConstitution);
+            character.Charisma = ReadAsInt32(_txtCharisma);
             SelectedCharacter = character;
+           
             Close();
 
         }
@@ -129,6 +119,78 @@ namespace CharacterCreator.Winforms
 
         private void label1_Click ( object sender, EventArgs e )
         {
+
+        }
+ 
+        
+        private void OnValidateName ( object sender, System.ComponentModel.CancelEventArgs e )
+        {
+            var control = sender as TextBox;
+
+            //Name is required
+            if (String.IsNullOrEmpty(control.Text))
+            {
+                //Set error using ErrorProvider
+                _error1.SetError(control, "Name is required"); // error message shown on mouse over
+                e.Cancel = true;  //Not validate
+            } else
+            {
+                //Clear error from provider
+                _error1.SetError(control, "");
+            }
+        }
+
+        private void OnValidatedProfession ( object sender, System.ComponentModel.CancelEventArgs e )
+        {
+            var control = sender as ComboBox;
+
+            //Profession is required
+            if (String.IsNullOrEmpty(control.Text))
+            {
+                //Set error using ErrorProvider
+                _error2.SetError(control, "Profession is required"); // error message shown on mouse over
+                e.Cancel = true;  //Not validate
+            } else
+            {
+                //Clear error from provider
+                _error2.SetError(control, "");
+            }
+
+        }
+
+        //private void OnValidateRace ( object sender, System.ComponentModel.CancelEventArgs e )
+        //{
+        //    var control = sender as ComboBox;
+
+        //    //Name is required
+        //    if (String.IsNullOrEmpty(control.Text))
+        //    {
+        //        //Set error using ErrorProvider
+        //        _error3.SetError(control, "Race is required");
+        //        e.Cancel = true;  //Not validate
+        //    } else
+        //    {
+        //        //Clear error from provider
+        //        _error3.SetError(control, "");
+        //    }
+
+        //}
+
+        private void OnValidatedRace ( object sender, System.ComponentModel.CancelEventArgs e )
+        {
+            var control = sender as ComboBox;
+
+            //Name is required
+            if (String.IsNullOrEmpty(control.Text))
+            {
+                //Set error using ErrorProvider
+                _error3.SetError(control, "Race is required"); // error message shown on mouse over
+                e.Cancel = true;  //Not validate
+            } else
+            {
+                //Clear error from provider
+                _error3.SetError(control, "");
+            }
 
         }
     }
