@@ -58,24 +58,59 @@ namespace CharacterCreator.Winforms
 
         private void comboProfession_SelectedIndexChanged ( object sender, EventArgs e )
         {
-           
+
 
         }
         private void OnSave ( object sender, EventArgs e )
         {
             var character = new Character();
             character.Name = _txtName.Text;
-            character.Profession =_CbProfession.Text;
+            character.Profession = _CbProfession.Text;
             character.Race = _CbRace.Text;
-            character.Strength = ReadAsInt32(_txtStrength);
-            character.Intelligence = ReadAsInt32(_txtIntelligence);
-            character.Agility = ReadAsInt32(_txtAgility);
-            character.Constitution = ReadAsInt32(_txtConstitution);
-            character.Charisma = ReadAsInt32(_txtCharisma);
+            character.Strength = (int)_txtStrength.Value;
+            character.Intelligence = (int)_txtIntelligence.Value;
+            character.Agility = (int)_txtAgility.Value;
+            character.Constitution = (int)_txtConstitution.Value;
+            character.Charisma = (int)_txtCharisma.Value;
+            character.Description = _txtDescription.Text;
+
+
+            // Validation
+            var validationResults = new ObjectValidator().TryValidateFullobject(character);
+             if (validationResults.Count() > 0)
+            {
+                var builder = new System.Text.StringBuilder();
+                foreach (var result in validationResults)
+                {
+                    builder.AppendLine(result.ErrorMessage);
+                };
+                // Show error message
+                MessageBox.Show(this, builder.ToString(), "Save failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                DialogResult = DialogResult.None;
+                return;
+
+
+            };
+
+
             SelectedCharacter = character;
-           
             Close();
 
+        }
+
+        private void NewMethod ( IEnumerable<ValidationResult> validationResults )
+        {
+
+            //TODO
+            var builder = new System.Text.StringBuilder();
+            foreach (var result in validationResults)
+            {
+                builder.AppendLine(result.ErrorMessage);
+            };
+            //show error message
+            MessageBox.Show(this, builder.ToString(), "Save failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            DialogResult = DialogResult.None;
+            return;
         }
 
         private void LoadUI ()
@@ -110,6 +145,8 @@ namespace CharacterCreator.Winforms
             if (Int32.TryParse(text, out var result))
                 return result;
             return -1;
+
+
         }
 
         private void btnCance1_Click ( object sender, EventArgs e )
@@ -121,8 +158,6 @@ namespace CharacterCreator.Winforms
         {
 
         }
- 
-        
         private void OnValidateName ( object sender, System.ComponentModel.CancelEventArgs e )
         {
             var control = sender as TextBox;
@@ -158,23 +193,7 @@ namespace CharacterCreator.Winforms
 
         }
 
-        //private void OnValidateRace ( object sender, System.ComponentModel.CancelEventArgs e )
-        //{
-        //    var control = sender as ComboBox;
-
-        //    //Name is required
-        //    if (String.IsNullOrEmpty(control.Text))
-        //    {
-        //        //Set error using ErrorProvider
-        //        _error3.SetError(control, "Race is required");
-        //        e.Cancel = true;  //Not validate
-        //    } else
-        //    {
-        //        //Clear error from provider
-        //        _error3.SetError(control, "");
-        //    }
-
-        //}
+        
 
         private void OnValidatedRace ( object sender, System.ComponentModel.CancelEventArgs e )
         {

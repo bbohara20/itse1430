@@ -15,5 +15,10 @@ namespace CharacterCreator
             
 
         }
+
+        public object TryValidateFullObject ( Character character )
+        {
+            throw new NotImplementedException();
+        }
     }
 }

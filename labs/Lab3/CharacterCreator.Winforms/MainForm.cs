@@ -6,6 +6,8 @@ using System;
 using System.Linq;
 using System.Windows.Forms;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+
 
 namespace CharacterCreator.Winforms
 {
@@ -64,6 +66,7 @@ namespace CharacterCreator.Winforms
 
         private void RefreshRoster ()
         {
+            
             _IstCharacter.DataSource = null;
 
             if (_character == null)
@@ -123,13 +126,14 @@ namespace CharacterCreator.Winforms
 
             
         }
-        private int RefreshUI ()
+        private void RefreshUI ()
         {
-            var items = _character.GetAll().ToArray();
+            _IstCharacter.DataSource = _character.GetAll().ToArray();
+           // var items = _character.GetAll().ToArray();
 
-            _IstCharacter.DataSource  = items;
+         //   _IstCharacter.DataSource  = items;
             
-            return items.Length;
+           //return items.Length;
         }
         
         private void DeleteCharacter ( int id)

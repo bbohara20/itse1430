@@ -38,45 +38,23 @@ namespace CharacterCreator
         private int _constitution = 50;
         private int _charisma = 50;
 
-        //public string Validate ()
-        //{
-        //    // Name is required
-
-        //    if (String.IsNullOrEmpty(Name))
-        //        return "Name is required";
-
-        //    if (String.IsNullOrEmpty(Profession))
-        //        return "Profession is required";
-
-        //    if (String.IsNullOrEmpty(Race))
-        //        return "Race is required";
-
-        //    return null;
-       // }
+        
         public override string ToString ()
         {
             return Name;
         }
         public IEnumerable<ValidationResult> Validate ( ValidationContext validationContext )
         {
-            
-            //When you are using the iterator syntax then all the return statements must be yield return
-
-            //Name is required
-            if (String.IsNullOrEmpty(this.Name))//this.Name
+             //Name is required
+            if (String.IsNullOrEmpty(Name))//this.Name
                 yield return new ValidationResult("Name is required", new[] { nameof(Name) });
-            //Yield returning new validation result with message and string array (collection init syntax) containing a single string with name of Name
-
-            //Run length must be >= 0
-            if (String.IsNullOrEmpty(this.Profession))
-               // return "Profession is required";
-            yield return new ValidationResult("Profession is required", new[] { nameof(Profession) });
-
             
-            if (String.IsNullOrEmpty(this.Race))
+            if (String.IsNullOrEmpty(Profession))
+               // return "Profession is required";
+                yield return new ValidationResult("Profession is required", new[] { nameof(Profession) });
 
-
-                yield return new ValidationResult("Race is required", new[] { nameof(Race) });
+             if (String.IsNullOrEmpty(Race))
+              yield return new ValidationResult("Race is required", new[] { nameof(Race) });
 
             //return null;
         }
