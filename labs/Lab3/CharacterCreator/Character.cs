@@ -38,25 +38,25 @@ namespace CharacterCreator
         private int _constitution = 50;
         private int _charisma = 50;
 
-        
+
         public override string ToString ()
         {
             return Name;
         }
         public IEnumerable<ValidationResult> Validate ( ValidationContext validationContext )
         {
-             //Name is required
+            //Name is required
             if (String.IsNullOrEmpty(Name))//this.Name
                 yield return new ValidationResult("Name is required", new[] { nameof(Name) });
-            
+
             if (String.IsNullOrEmpty(Profession))
-               // return "Profession is required";
+                // return "Profession is required";
                 yield return new ValidationResult("Profession is required", new[] { nameof(Profession) });
 
-             if (String.IsNullOrEmpty(Race))
-              yield return new ValidationResult("Race is required", new[] { nameof(Race) });
+            if (String.IsNullOrEmpty(Race))
+                yield return new ValidationResult("Race is required", new[] { nameof(Race) });
 
-            //return null;
+
         }
 
     }

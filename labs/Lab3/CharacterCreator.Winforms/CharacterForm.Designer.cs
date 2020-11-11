@@ -267,7 +267,7 @@ namespace CharacterCreator.Winforms
             this.btnSave.TabIndex = 25;
             this.btnSave.Text = "save";
             this.btnSave.UseVisualStyleBackColor = true;
-            this.btnSave.Click += new System.EventHandler(this.OnSavebtn);
+            this.btnSave.Click += new System.EventHandler(this.OnSave);
             // 
             // btnCancel
             // 

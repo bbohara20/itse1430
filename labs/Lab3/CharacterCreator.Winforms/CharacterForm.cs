@@ -4,8 +4,6 @@
  *Lab: Character Creator
  */
 using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Windows.Forms;
 namespace CharacterCreator.Winforms
@@ -63,6 +61,11 @@ namespace CharacterCreator.Winforms
         }
         private void OnSave ( object sender, EventArgs e )
         {
+            if (!ValidateChildren())
+            {
+                DialogResult = DialogResult.None;
+                return;
+            };
             var character = new Character();
             character.Name = _txtName.Text;
             character.Profession = _CbProfession.Text;
@@ -74,10 +77,9 @@ namespace CharacterCreator.Winforms
             character.Charisma = (int)_txtCharisma.Value;
             character.Description = _txtDescription.Text;
 
-
             // Validation
             var validationResults = new ObjectValidator().TryValidateFullobject(character);
-             if (validationResults.Count() > 0)
+            if (validationResults.Count() > 0)
             {
                 var builder = new System.Text.StringBuilder();
                 foreach (var result in validationResults)
@@ -88,29 +90,10 @@ namespace CharacterCreator.Winforms
                 MessageBox.Show(this, builder.ToString(), "Save failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 DialogResult = DialogResult.None;
                 return;
-
-
             };
-
-
             SelectedCharacter = character;
             Close();
 
-        }
-
-        private void NewMethod ( IEnumerable<ValidationResult> validationResults )
-        {
-
-            //TODO
-            var builder = new System.Text.StringBuilder();
-            foreach (var result in validationResults)
-            {
-                builder.AppendLine(result.ErrorMessage);
-            };
-            //show error message
-            MessageBox.Show(this, builder.ToString(), "Save failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            DialogResult = DialogResult.None;
-            return;
         }
 
         private void LoadUI ()
@@ -121,6 +104,7 @@ namespace CharacterCreator.Winforms
                 Text = "Edit Character";
                 LoadCharacter(SelectedCharacter);
             };
+
         }
         private void LoadCharacter ( Character character )
         {
@@ -135,18 +119,13 @@ namespace CharacterCreator.Winforms
             _txtAgility.Value = character.Agility;
             _txtConstitution.Value = character.Constitution;
             _txtCharisma.Value = character.Charisma;
-
         }
-
-
         private int ReadAsInt32 ( Control control )
         {
             var text = control.Text;
             if (Int32.TryParse(text, out var result))
                 return result;
             return -1;
-
-
         }
 
         private void btnCance1_Click ( object sender, EventArgs e )
@@ -192,9 +171,6 @@ namespace CharacterCreator.Winforms
             }
 
         }
-
-        
-
         private void OnValidatedRace ( object sender, System.ComponentModel.CancelEventArgs e )
         {
             var control = sender as ComboBox;
@@ -204,7 +180,7 @@ namespace CharacterCreator.Winforms
             {
                 //Set error using ErrorProvider
                 _error3.SetError(control, "Race is required"); // error message shown on mouse over
-                e.Cancel = true;  //Not validate
+                e.Cancel = true;  
             } else
             {
                 //Clear error from provider

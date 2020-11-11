@@ -1,7 +1,10 @@
-﻿using System;
+﻿/*
+ * Name: Bam Bohara
+ *Course: ITSE 1430
+ *Lab: Character Creator
+ */
+using System;
 using System.Collections.Generic;
-using System.Dynamic;
-using System.Text;
 
 namespace CharacterCreator
 {
@@ -22,7 +25,6 @@ namespace CharacterCreator
             var existing = GetByName(character.Name);
             if (existing != null)
                 throw new InvalidOperationException("Character name must be unique");
-
             try
             {
                 return AddCharacter(character);
@@ -32,7 +34,6 @@ namespace CharacterCreator
                 throw new InvalidOperationException("Add Failed", e);
             };
         }
-
         protected virtual Character GetByName ( string name )
         {
             foreach (var character in _characters)
@@ -43,10 +44,8 @@ namespace CharacterCreator
 
             return null;
         }
-
-        
-          public void Delete ( int id )
-         {
+        public void Delete ( int id )
+        {
             // Validate Id > 0
             if (id <= 0)
                 throw new ArgumentOutOfRangeException(nameof(id), "Id must be greater than zero");
@@ -65,27 +64,17 @@ namespace CharacterCreator
         {
             //Find highest ID
             var characters = _characters;
-
-            
             var items = new List<Character>(characters);
-
-            //var lastId = 0;
-            //foreach (var item in items)
-            //{
-            //    if (item.id > lastId)
-            //        lastId = item.id;
-            //};
-
 
             //Set a unique ID
             character.id = ++lastId;
             items.Add(character);
 
-            // Save characte
+            // Save character
             SaveCharacters(items);
             return character;
         }
-        public void SaveCharacters (List<Character> items) 
+        public void SaveCharacters ( List<Character> items )
         {
             _characters.Clear();
             _characters = items;
@@ -128,28 +117,27 @@ namespace CharacterCreator
             return null;
         }
         public IEnumerable<Character> GetAll ()
-            {
-                try
-                {
-                    return _characters;
-                } catch (Exception e)
-                {
-                    //Throwing a new exception
-                    throw new InvalidOperationException("GetAll Failed", e);
-                };
-            }
-            public void Update ( int id, Character character )
         {
-            
-             //Validation
-                if (id <= 0)
-                    throw new ArgumentOutOfRangeException(nameof(id), "Id must be greater than zero");
-                if (character == null)
-                    throw new ArgumentNullException(nameof(character));
+            try
+            {
+                return _characters;
+            } catch (Exception e)
+            {
+                //Throwing a new exception
+                throw new InvalidOperationException("GetAll Failed", e);
+            };
+        }
+        public void Update ( int id, Character character )
+        {
+            //Validation
+            if (id <= 0)
+                throw new ArgumentOutOfRangeException(nameof(id), "Id must be greater than zero");
+            if (character == null)
+                throw new ArgumentNullException(nameof(character));
 
-               var existing = GetByName(character.Name);
-                if (existing != null && existing.id != id)
-                    throw new InvalidOperationException("Character must be unique");
+            var existing = GetByName(character.Name);
+            if (existing != null && existing.id != id)
+                throw new InvalidOperationException("Character must be unique");
             //Remove old character
             var items = new List<Character>(_characters);
             foreach (var item in items)
@@ -157,31 +145,19 @@ namespace CharacterCreator
                 //Use item not character
                 if (item.id == id)
                 {
-                    //Must use item here, not movie
+                    //Must use item here, not character
                     items.Remove(item);
                     break;
                 };
             };
 
-            //Add new movie
+            //Add new character
             character.id = id;
             items.Add(character);
-
             SaveCharacters(items);
-        
 
-
-        // Generalize errors            
-        //try
-        //{
-        //    Update (id, character);
-        //} catch (Exception e)
-        //{
-        //    //Throwing a new exception
-        //    throw new InvalidOperationException("Update Failed", e);
-        //};
-    }
-    protected  void UpdateCore ( int id, Character character )
+        }
+        protected void UpdateCore ( int id, Character character )
         {
             //Remove old character
             var items = new List<Character>(_characters);
@@ -190,26 +166,20 @@ namespace CharacterCreator
                 //Use item not character
                 if (item.id == id)
                 {
-                    //Must use item here, not movie
+                    //Must use item here, not character
                     items.Remove(item);
                     break;
                 };
             };
 
-            //Add new movie
+            //Add new character
             character.id = id;
             items.Add(character);
 
             SaveCharacters(items);
         }
 
-
-
-
-
-
-
     }
 }
-    
+
 

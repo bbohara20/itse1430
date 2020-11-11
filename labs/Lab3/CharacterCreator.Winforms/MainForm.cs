@@ -5,8 +5,6 @@
 using System;
 using System.Linq;
 using System.Windows.Forms;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 
 
 namespace CharacterCreator.Winforms
@@ -38,7 +36,7 @@ namespace CharacterCreator.Winforms
                 return;
 
             //Add the character 
-          AddCharacter(form.SelectedCharacter);
+            AddCharacter(form.SelectedCharacter);
             RefreshUI();
 
         }
@@ -66,14 +64,14 @@ namespace CharacterCreator.Winforms
 
         private void RefreshRoster ()
         {
-            
+
             _IstCharacter.DataSource = null;
 
             if (_character == null)
                 return;
 
             var roster = new Character[1];
-            roster[0] = (Character)_character; 
+            roster[0] = (Character)_character;
             _IstCharacter.DataSource = roster;
             _IstCharacter.DisplayMember = nameof(Character.Name);
         }
@@ -86,7 +84,7 @@ namespace CharacterCreator.Winforms
             if (MessageBox.Show(this, $"Are you sure you want to delete {character.Name}?", "Delete?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
                 return;
             _character.Delete(character.id);
-            
+
             RefreshUI();
         }
         private void OnCharacterEdit ( object sender, EventArgs e )
@@ -101,48 +99,36 @@ namespace CharacterCreator.Winforms
             if (form.ShowDialog(this) == DialogResult.Cancel)
                 return;
             EditCharacter(character.id, form.SelectedCharacter);
-           // var characters = _character;
-           //var _character = form.SelectedCharacter;
-            // _character.Update(character.id);
 
             RefreshUI();
             MessageBox.Show("Save successful");
         }
         private Character GetSelectedCharacter ()
         {
-            return _IstCharacter.SelectedItem as Character; 
+            return _IstCharacter.SelectedItem as Character;
         }
-        
 
         private ICharacterRoster _character = new MemoryCharacterRoster();
         private void AddCharacter ( Character character )
         {
             var characters = _character;
-          
+
             characters.Add(character);
-            
+
 
             RefreshUI();
-
-            
         }
         private void RefreshUI ()
         {
             _IstCharacter.DataSource = _character.GetAll().ToArray();
-           // var items = _character.GetAll().ToArray();
 
-         //   _IstCharacter.DataSource  = items;
-            
-           //return items.Length;
         }
-        
-        private void DeleteCharacter ( int id)
+
+        private void DeleteCharacter ( int id )
         {
-            _character.Delete( id);
+            _character.Delete(id);
             RefreshUI();
-
-
-            }
+        }
         private void EditCharacter ( int id, Character character )
         {
             _character.Update(id, character);

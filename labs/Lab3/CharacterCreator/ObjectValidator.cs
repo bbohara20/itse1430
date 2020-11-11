@@ -1,4 +1,8 @@
-﻿using System;
+﻿/* Name: Bam Bohara
+ *Course: ITSE 1430
+ *Lab: Character Creator
+ */
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
@@ -12,9 +16,7 @@ namespace CharacterCreator
             var validationResults = new List<ValidationResult>();
             Validator.TryValidateObject(value, new ValidationContext(value), validationResults, true);
             return validationResults;
-            
-
-        }
+             }
 
         public object TryValidateFullObject ( Character character )
         {
