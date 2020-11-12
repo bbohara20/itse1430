@@ -3,6 +3,7 @@
  */
 using System;
 using System.ComponentModel;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace Nile.Windows
@@ -70,6 +71,21 @@ namespace Nile.Windows
             };
 
             //TODO: Validate product
+            var validationResults = new ObjectValidator().TryValidateFullobject(product);
+            if (validationResults.Count() > 0)
+            {
+                var builder = new System.Text.StringBuilder();
+                foreach (var result in validationResults)
+                {
+                    builder.AppendLine(result.ErrorMessage);
+                };
+                // Show error message
+                MessageBox.Show(this, builder.ToString(), "Save failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                DialogResult = DialogResult.None;
+                return;
+            };
+           
+
 
             Product = product;
             DialogResult = DialogResult.OK;

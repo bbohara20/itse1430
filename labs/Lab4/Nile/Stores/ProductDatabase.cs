@@ -3,6 +3,8 @@
  */
 using System;
 using System.Collections.Generic;
+using System.Linq;
+
 
 namespace Nile.Stores
 {
@@ -17,6 +19,17 @@ namespace Nile.Stores
             //TODO: Check arguments
 
             //TODO: Validate product
+            var validationResults = new ObjectValidator().TryValidateFullobject(product);
+            if (validationResults.Count() > 0)
+            {
+                var builder = new System.Text.StringBuilder();
+                foreach (var result in validationResults)
+                {
+                    builder.AppendLine(result.ErrorMessage);
+                };
+                // Show error message
+                return null;
+            };
 
             //Emulate database by storing copy
             return AddCore(product);
@@ -55,6 +68,19 @@ namespace Nile.Stores
             //TODO: Check arguments
 
             //TODO: Validate product
+            var validationResults = new ObjectValidator().TryValidateFullobject(product);
+            if (validationResults.Count() > 0)
+            {
+                var builder = new System.Text.StringBuilder();
+                foreach (var result in validationResults)
+                {
+                    builder.AppendLine(result.ErrorMessage);
+                };
+                // Show error message
+                return null;
+            };
+
+
 
             //Get existing product
             var existing = GetCore(product.Id);
