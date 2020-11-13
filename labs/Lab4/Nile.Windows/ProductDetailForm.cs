@@ -1,5 +1,6 @@
-/*
+/*Bam Bohara
  * ITSE 1430
+ * Lab4
  */
 using System;
 using System.ComponentModel;

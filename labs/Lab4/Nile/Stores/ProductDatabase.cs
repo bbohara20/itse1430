@@ -1,5 +1,6 @@
-/*
+/*Bam Bohara
  * ITSE 1430
+ * Lab 4
  */
 using System;
 using System.Collections.Generic;
@@ -17,9 +18,15 @@ namespace Nile.Stores
         public Product Add ( Product product )
         {
             //TODO: Check arguments
+           
+             if (product == null)
+                {
+                    throw new ArgumentNullException(nameof(product));
+                }
 
-            //TODO: Validate product
-            var validationResults = new ObjectValidator().TryValidateFullobject(product);
+
+               //TODO: Validate product
+                var validationResults = new ObjectValidator().TryValidateFullobject(product);
             if (validationResults.Count() > 0)
             {
                 var builder = new System.Text.StringBuilder();
@@ -30,6 +37,16 @@ namespace Nile.Stores
                 // Show error message
                 return null;
             };
+            var existing = GetAll();
+            if (existing != null)
+                foreach (var product2 in existing)
+                {
+                    if (String.Compare(product.Name, product2.Name, true) == 0)
+                        throw new InvalidOperationException(" Product name must be unique");
+
+                };
+
+            
 
             //Emulate database by storing copy
             return AddCore(product);
@@ -40,6 +57,8 @@ namespace Nile.Stores
         public Product Get ( int id )
         {
             //TODO: Check arguments
+            if (id <= 0)
+                throw new ArgumentOutOfRangeException(nameof(id), "Id must be greater than zero");
 
             return GetCore(id);
         }
@@ -56,7 +75,9 @@ namespace Nile.Stores
         public void Remove ( int id )
         {
             //TODO: Check arguments
-
+            if (id <= 0)
+                throw new ArgumentOutOfRangeException(nameof(id), "Id must be greater than zero");
+            
             RemoveCore(id);
         }
         
@@ -66,6 +87,14 @@ namespace Nile.Stores
         public Product Update ( Product product )
         {
             //TODO: Check arguments
+            
+            if (  product.Id <= 0)
+                throw new ArgumentOutOfRangeException(nameof(product), "Id must be greater than zero");
+            if (product == null)
+                throw new ArgumentNullException(nameof(product));
+
+            
+
 
             //TODO: Validate product
             var validationResults = new ObjectValidator().TryValidateFullobject(product);
@@ -79,11 +108,18 @@ namespace Nile.Stores
                 // Show error message
                 return null;
             };
-
-
-
+            
             //Get existing product
             var existing = GetCore(product.Id);
+            var products = GetAll();
+            if (products != null)
+                foreach (var product2 in products)
+                {
+                    if (String.Compare(product.Name, product2.Name, true) == 0)
+                    if (!(String .Compare(existing.Name, product.Name,true) == 0))
+                        throw new InvalidOperationException(" Product name must be unique");
+
+                };
 
             return UpdateCore(existing, product);
         }

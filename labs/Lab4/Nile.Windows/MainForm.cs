@@ -1,5 +1,6 @@
-/*
+/*Bam Bohara
  * ITSE 1430
+ * Lab4
  */
 using System;
 using System.Windows.Forms;
@@ -41,8 +42,18 @@ namespace Nile.Windows
                 return;
 
             //TODO: Handle errors
+            try
+            {
+                _database.Add(child.Product);
+            } catch (Exception ex)
+            {
+                MessageBox.Show("Product could not be added.");
+
+            };
+
             //Save product
-            _database.Add(child.Product);
+
+            
             UpdateList();
         }
 
@@ -107,8 +118,17 @@ namespace Nile.Windows
                 return;
 
             //TODO: Handle errors
+            try
+            {
+                _database.Remove(product.Id);
+            } catch (Exception ex)
+            {
+                MessageBox.Show("Product could not be deleted");
+
+            };
+
             //Delete product
-            _database.Remove(product.Id);
+            
             UpdateList();
         }
 
@@ -120,8 +140,17 @@ namespace Nile.Windows
                 return;
 
             //TODO: Handle errors
-            //Save product
+            try
+            {
             _database.Update(child.Product);
+
+            } catch (Exception ex)
+            {
+                MessageBox.Show("Product could not be updated");
+
+            };
+            //Save product
+            
             UpdateList();
         }
 
@@ -136,8 +165,18 @@ namespace Nile.Windows
         private void UpdateList ()
         {
             //TODO: Handle errors
-
+            try
+            {
             _bsProducts.DataSource = _database.GetAll();
+
+
+            } catch (Exception ex)
+            {
+                MessageBox.Show("Product list could not be updated");
+
+            };
+
+            
         }
 
         private readonly IProductDatabase _database = new Nile.Stores.MemoryProductDatabase();
