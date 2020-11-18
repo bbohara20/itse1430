@@ -4,6 +4,10 @@
  */
 using System;
 using System.Windows.Forms;
+using System.Linq;
+
+using System.Configuration;
+using System.Data.SqlClient;
 
 namespace Nile.Windows
 {
@@ -167,19 +171,22 @@ namespace Nile.Windows
             //TODO: Handle errors
             try
             {
-            _bsProducts.DataSource = _database.GetAll();
+                _bsProducts.DataSource = _database.GetAll();
 
 
             } catch (Exception ex)
             {
                 MessageBox.Show("Product list could not be updated");
-
             };
+           }
+         private static string s_connectionString = ConfigurationManager.ConnectionStrings["ProductDatabase"].ConnectionString;
+         private IProductDatabase _database = new Stores.Sql.SqlProductDatabase(s_connectionString);
+       // private IProductDatabase _database = new Nile.Stores.MemoryProductDatabase();
+       
 
-            
-        }
 
-        private readonly IProductDatabase _database = new Nile.Stores.MemoryProductDatabase();
+
+        
         #endregion
 
         private void _mainMenu_ItemClicked ( object sender, ToolStripItemClickedEventArgs e )

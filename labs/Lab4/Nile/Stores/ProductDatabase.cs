@@ -44,12 +44,21 @@ namespace Nile.Stores
                     if (String.Compare(product.Name, product2.Name, true) == 0)
                         throw new InvalidOperationException(" Product name must be unique");
 
+
                 };
 
-            
+
 
             //Emulate database by storing copy
-            return AddCore(product);
+            try
+            {
+                return AddCore(product);
+            } catch (Exception e)
+            {
+                //Throwing a new exception
+                throw new InvalidOperationException("Add Failed", e);
+            };
+            
         }
 
         /// <summary>Get a specific product.</summary>
@@ -67,7 +76,15 @@ namespace Nile.Stores
         /// <returns>The products.</returns>
         public IEnumerable<Product> GetAll ()
         {
-            return GetAllCore();
+            try
+            {
+                return GetAllCore();
+            } catch (Exception e)
+            {
+                throw new InvalidOperationException("GetAll Failed", e);
+
+
+            }
         }
         
         /// <summary>Removes the product.</summary>
