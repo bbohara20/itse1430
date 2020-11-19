@@ -51,8 +51,8 @@ namespace Nile.Windows
                 _database.Add(child.Product);
             } catch (Exception ex)
             {
-                MessageBox.Show("Product could not be added.");
-
+                MessageBox.Show("Product could not be added.",ex.ToString());
+                System.Diagnostics.Debug.WriteLine(ex.ToString());
             };
 
             //Save product
@@ -127,7 +127,7 @@ namespace Nile.Windows
                 _database.Remove(product.Id);
             } catch (Exception ex)
             {
-                MessageBox.Show("Product could not be deleted");
+                MessageBox.Show("Product could not be deleted", ex.ToString());
 
             };
 
@@ -150,7 +150,7 @@ namespace Nile.Windows
 
             } catch (Exception ex)
             {
-                MessageBox.Show("Product could not be updated");
+               MessageBox.Show("Product could not be updated",ex.ToString());
 
             };
             //Save product
@@ -171,14 +171,19 @@ namespace Nile.Windows
             //TODO: Handle errors
             try
             {
-                _bsProducts.DataSource = _database.GetAll();
+                //_bsProducts.DataSource = _database.GetAll();
+                var items = _database.GetAll()
+                              .OrderBy(x => x.Name)
+                              .Select(x => x)  
+                              .ToArray();
+                _bsProducts.DataSource  = items;
 
 
             } catch (Exception ex)
             {
-                MessageBox.Show("Product list could not be updated");
+              // MessageBox.Show("Product list could not be updated");
             };
-           }
+            }
          private static string s_connectionString = ConfigurationManager.ConnectionStrings["ProductDatabase"].ConnectionString;
          private IProductDatabase _database = new Stores.Sql.SqlProductDatabase(s_connectionString);
        // private IProductDatabase _database = new Nile.Stores.MemoryProductDatabase();

@@ -2,7 +2,8 @@
  * /*Bam Bohara
  * ITSE 1430
  * Lab 4
- */using System;
+ */
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -64,7 +65,7 @@ namespace Nile.Stores.Sql
             {
                 //Provider-agnostic way to create command
                 var command = connection.CreateCommand();
-                command.CommandText = "DeleteProduct";
+                command.CommandText = "RemoveProduct";
                 command.CommandType = CommandType.StoredProcedure;
 
                 //Add parameters
@@ -84,7 +85,7 @@ namespace Nile.Stores.Sql
             //IDisposable so always wrap in a using
             using (var connection = OpenConnection())
             {
-            var command = new SqlCommand("GetProducts", connection);
+            var command = new SqlCommand("GetAllProducts", connection);
             command.CommandType = CommandType.StoredProcedure;
            //Execute the command - using the buffered approach                
                 var da = new SqlDataAdapter() {
