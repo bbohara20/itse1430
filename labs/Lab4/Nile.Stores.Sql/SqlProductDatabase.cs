@@ -101,7 +101,7 @@ namespace Nile.Stores.Sql
                 {
                     while (reader.Read())
                     {
-                        var productId = reader.GetInt32(0);
+                    var productId = reader.GetInt32(0);
                         if (productId == id)
                         {
                             return new Product() {
