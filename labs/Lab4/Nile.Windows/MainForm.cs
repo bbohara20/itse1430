@@ -5,25 +5,24 @@
 using System;
 using System.Windows.Forms;
 using System.Linq;
-
 using System.Configuration;
 using System.Data.SqlClient;
 
 namespace Nile.Windows
 {
-    public partial class MainForm : Form
+  public partial class MainForm : Form
     {
         #region Construction
 
-        public MainForm()
+  public MainForm()
         {
             InitializeComponent();
             aboutToolStripMenuItem.Click += OnAboutBoxAdd;
 
-        }
+         }
         #endregion
 
-        protected override void OnLoad( EventArgs e )
+  protected override void OnLoad( EventArgs e )
         {
             base.OnLoad(e);
 
@@ -34,12 +33,12 @@ namespace Nile.Windows
 
         #region Event Handlers
         
-        private void OnFileExit( object sender, EventArgs e )
+  private void OnFileExit( object sender, EventArgs e )
         {
             Close();
         }
 
-        private void OnProductAdd( object sender, EventArgs e )
+  private void OnProductAdd( object sender, EventArgs e )
         {
             var child = new ProductDetailForm("Product Details");
             if (child.ShowDialog(this) != DialogResult.OK)
@@ -57,9 +56,8 @@ namespace Nile.Windows
 
             //Save product
 
-            
             UpdateList();
-        }
+          }
 
         private void OnProductEdit( object sender, EventArgs e )
         {
@@ -194,18 +192,18 @@ namespace Nile.Windows
         
         #endregion
 
-        private void _mainMenu_ItemClicked ( object sender, ToolStripItemClickedEventArgs e )
+  private void _mainMenu_ItemClicked ( object sender, ToolStripItemClickedEventArgs e )
         {
 
         }
-        private void OnAboutBoxAdd ( object sender, EventArgs e )
+  private void OnAboutBoxAdd ( object sender, EventArgs e )
         {
             var form = new AboutBox();
 
             var result = form.ShowDialog(this);
             if (result == DialogResult.Cancel)
                 return;
-        }
+         }
 
-    }
-}
+     }
+ }
