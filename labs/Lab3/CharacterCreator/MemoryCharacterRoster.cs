@@ -4,7 +4,7 @@ using System.Text;
 
 namespace CharacterCreator
 {
-   public class MemoryCharacterRoster : CharacterRoster
+    public class MemoryCharacterRoster : CharacterRoster
     {
     }
 }

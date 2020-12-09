@@ -10,19 +10,19 @@ using System.Data.SqlClient;
 
 namespace Nile.Windows
 {
-  public partial class MainForm : Form
+    public partial class MainForm : Form
     {
         #region Construction
 
-  public MainForm()
+        public MainForm ()
         {
             InitializeComponent();
             aboutToolStripMenuItem.Click += OnAboutBoxAdd;
 
-         }
+        }
         #endregion
 
-  protected override void OnLoad( EventArgs e )
+        protected override void OnLoad ( EventArgs e )
         {
             base.OnLoad(e);
 
@@ -32,13 +32,13 @@ namespace Nile.Windows
         }
 
         #region Event Handlers
-        
-  private void OnFileExit( object sender, EventArgs e )
+
+        private void OnFileExit ( object sender, EventArgs e )
         {
             Close();
         }
 
-  private void OnProductAdd( object sender, EventArgs e )
+        private void OnProductAdd ( object sender, EventArgs e )
         {
             var child = new ProductDetailForm("Product Details");
             if (child.ShowDialog(this) != DialogResult.OK)
@@ -50,16 +50,16 @@ namespace Nile.Windows
                 _database.Add(child.Product);
             } catch (Exception ex)
             {
-                MessageBox.Show("Product could not be added.",ex.ToString());
-                System.Diagnostics.Debug.WriteLine(ex.ToString());
+                MessageBox.Show(ex.ToString());
+
             };
 
             //Save product
 
             UpdateList();
-          }
+        }
 
-        private void OnProductEdit( object sender, EventArgs e )
+        private void OnProductEdit ( object sender, EventArgs e )
         {
             var product = GetSelectedProduct();
             if (product == null)
@@ -69,18 +69,18 @@ namespace Nile.Windows
             };
 
             EditProduct(product);
-        }        
+        }
 
-        private void OnProductDelete( object sender, EventArgs e )
+        private void OnProductDelete ( object sender, EventArgs e )
         {
             var product = GetSelectedProduct();
             if (product == null)
                 return;
 
             DeleteProduct(product);
-        }        
-                
-        private void OnEditRow( object sender, DataGridViewCellEventArgs e )
+        }
+
+        private void OnEditRow ( object sender, DataGridViewCellEventArgs e )
         {
             var grid = sender as DataGridView;
 
@@ -95,7 +95,7 @@ namespace Nile.Windows
                 EditProduct(item);
         }
 
-        private void OnKeyDownGrid( object sender, KeyEventArgs e )
+        private void OnKeyDownGrid ( object sender, KeyEventArgs e )
         {
             if (e.KeyCode != Keys.Delete)
                 return;
@@ -103,8 +103,8 @@ namespace Nile.Windows
             var product = GetSelectedProduct();
             if (product != null)
                 DeleteProduct(product);
-			
-			//Don't continue with key
+
+            //Don't continue with key
             e.SuppressKeyPress = true;
         }
 
@@ -130,7 +130,7 @@ namespace Nile.Windows
             };
 
             //Delete product
-            
+
             UpdateList();
         }
 
@@ -144,15 +144,15 @@ namespace Nile.Windows
             //TODO: Handle errors
             try
             {
-            _database.Update(child.Product);
+                _database.Update(child.Product);
 
             } catch (Exception ex)
             {
-               MessageBox.Show("Product could not be updated",ex.ToString());
+                MessageBox.Show("Product could not be updated", ex.ToString());
 
             };
             //Save product
-            
+
             UpdateList();
         }
 
@@ -172,38 +172,38 @@ namespace Nile.Windows
                 //_bsProducts.DataSource = _database.GetAll();
                 var items = _database.GetAll()
                               .OrderBy(x => x.Name)
-                              .Select(x => x)  
+                              .Select(x => x)
                               .ToArray();
                 _bsProducts.DataSource  = items;
 
 
             } catch (Exception ex)
             {
-              // MessageBox.Show("Product list could not be updated");
+                // MessageBox.Show("Product list could not be updated");
             };
-            }
-         private static string s_connectionString = ConfigurationManager.ConnectionStrings["ProductDatabase"].ConnectionString;
-         private IProductDatabase _database = new Stores.Sql.SqlProductDatabase(s_connectionString);
-       // private IProductDatabase _database = new Nile.Stores.MemoryProductDatabase();
-       
+        }
+        private static string s_connectionString = ConfigurationManager.ConnectionStrings["ProductDatabase"].ConnectionString;
+        private IProductDatabase _database = new Stores.Sql.SqlProductDatabase(s_connectionString);
+        // private IProductDatabase _database = new Nile.Stores.MemoryProductDatabase();
 
 
 
-        
+
+
         #endregion
 
-  private void _mainMenu_ItemClicked ( object sender, ToolStripItemClickedEventArgs e )
+        private void _mainMenu_ItemClicked ( object sender, ToolStripItemClickedEventArgs e )
         {
 
         }
-  private void OnAboutBoxAdd ( object sender, EventArgs e )
+        private void OnAboutBoxAdd ( object sender, EventArgs e )
         {
             var form = new AboutBox();
 
             var result = form.ShowDialog(this);
             if (result == DialogResult.Cancel)
                 return;
-         }
+        }
 
-     }
- }
+    }
+}

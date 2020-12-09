@@ -15,20 +15,20 @@ namespace Nile.Windows
 
         public ProductDetailForm () //: base()
         {
-            InitializeComponent();            
+            InitializeComponent();
         }
-        
+
         public ProductDetailForm ( string title ) : this()
         {
             Text = title;
         }
 
-        public ProductDetailForm( string title, Product product ) : this(title)
+        public ProductDetailForm ( string title, Product product ) : this(title)
         {
             Product = product;
         }
         #endregion
-        
+
         /// <summary>Gets or sets the product being shown.</summary>
         public Product Product { get; set; }
 
@@ -62,8 +62,7 @@ namespace Nile.Windows
                 return;
             };
 
-            var product = new Product()
-            {
+            var product = new Product() {
                 Id = Product?.Id ?? 0,
                 Name = _txtName.Text,
                 Description = _txtDescription.Text,
@@ -85,7 +84,7 @@ namespace Nile.Windows
                 DialogResult = DialogResult.None;
                 return;
             };
-           
+
 
 
             Product = product;
@@ -124,7 +123,7 @@ namespace Nile.Windows
 
             //Validate price            
             return -1;
-        }                      
+        }
         #endregion
     }
 }

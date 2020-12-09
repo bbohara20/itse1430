@@ -15,7 +15,7 @@ namespace Nile.Stores.Sql
     {
         public SqlProductDatabase ( string connectionString )
         {
-             _connectionString = connectionString;
+            _connectionString = connectionString;
         }
         private readonly string _connectionString;
         protected override Product AddCore ( Product product )
@@ -45,7 +45,7 @@ namespace Nile.Stores.Sql
                 return product;
             };
         }
-        
+
         protected override void RemoveCore ( int id )
         {
             using (var connection = OpenConnection())
@@ -67,7 +67,7 @@ namespace Nile.Stores.Sql
                 var da = new SqlDataAdapter() {
                     SelectCommand = command
                 };
-                
+
                 da.Fill(ds);
             };
 
@@ -97,11 +97,11 @@ namespace Nile.Stores.Sql
                 command.Parameters.AddWithValue("@id", id);
 
                 //Stream data using reader
-            using (var reader = command.ExecuteReader())
+                using (var reader = command.ExecuteReader())
                 {
                     while (reader.Read())
                     {
-                    var productId = reader.GetInt32(0);
+                        var productId = reader.GetInt32(0);
                         if (productId == id)
                         {
                             return new Product() {
@@ -115,7 +115,7 @@ namespace Nile.Stores.Sql
                     };
                 };
             };
-                return null;
+            return null;
         }
         protected override Product UpdateCore ( Product existing, Product product )
         {

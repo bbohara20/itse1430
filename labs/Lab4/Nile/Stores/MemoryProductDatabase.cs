@@ -11,7 +11,7 @@ namespace Nile.Stores
 {
     /// <summary>Base class for product database.</summary>
     public class MemoryProductDatabase : ProductDatabase
-    {        
+    {
         /// <summary>Adds a product.</summary>
         /// <param name="product">The product to add.</param>
         /// <returns>The added product.</returns>
@@ -62,13 +62,13 @@ namespace Nile.Stores
             //Replace 
             existing = FindProduct(product.Id);
             _products.Remove(existing);
-            
+
             var newProduct = CopyProduct(product);
             _products.Add(newProduct);
 
             return CopyProduct(newProduct);
         }
-        
+
         private Product CopyProduct ( Product product )
         {
             var newProduct = new Product();

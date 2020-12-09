@@ -16,7 +16,7 @@ namespace CharacterCreator
         //Data- data to store
         public const int MaximumAttributeValue = 100;
         public const int MinimumAttributeValue = 1;
-        public int id { get { return _id; } set { _id = value; } }
+        public int Id { get { return _id; } set { _id = value; } }
         public string Name { get { return _name ?? ""; } set { _name = value; } }
         public string Profession { get { return _profession ?? ""; } set { _profession = value; } }
         public string Race { get { return _race ?? ""; } set { _race = value; } }

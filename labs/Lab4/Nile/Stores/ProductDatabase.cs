@@ -27,7 +27,7 @@ namespace Nile.Stores
             }
 
 
-            //TODO: Validate product
+
             var validationResults = new ObjectValidator().TryValidateFullobject(product);
             if (validationResults.Count() > 0)
             {
@@ -37,7 +37,9 @@ namespace Nile.Stores
                     builder.AppendLine(result.ErrorMessage);
                 };
                 // Show error message
-                return null;
+                throw new Exception(builder.ToString());
+
+               // return null;
             };
             var existing = GetAll();
             if (existing != null)
@@ -99,11 +101,10 @@ namespace Nile.Stores
         public Product Update ( Product product )
         {
             //TODO: Check arguments
-
-            if (product.Id <= 0)
-                throw new ArgumentOutOfRangeException(nameof(product), "Id must be greater than zero");
             if (product == null)
                 throw new ArgumentNullException(nameof(product));
+            if (product.Id <= 0)
+                throw new ArgumentOutOfRangeException(nameof(product), "Id must be greater than zero");
 
             //TODO: Validate product
             var validationResults = new ObjectValidator().TryValidateFullobject(product);
@@ -115,8 +116,11 @@ namespace Nile.Stores
                     builder.AppendLine(result.ErrorMessage);
                 };
                 //Show error message
-                return null;
-              };
+                throw new Exception(builder.ToString());
+
+
+              //  return null;
+            };
 
             //Get existing product
             var existing = GetCore(product.Id);
@@ -125,11 +129,11 @@ namespace Nile.Stores
                 foreach (var product2 in products)
                 {
                     if (String.Compare(product.Name, product2.Name, true) == 0)
-                    if (!(String.Compare(existing.Name, product.Name, true) == 0))
-                          throw new InvalidOperationException(" Product name must be unique");
-                 };
+                        if (!(String.Compare(existing.Name, product.Name, true) == 0))
+                            throw new InvalidOperationException(" Product name must be unique");
+                };
 
-                  return UpdateCore(existing, product);
+            return UpdateCore(existing, product);
         }
 
         #region Protected Members

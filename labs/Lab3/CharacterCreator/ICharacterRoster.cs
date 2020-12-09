@@ -10,12 +10,12 @@ using System.Text;
 
 namespace CharacterCreator
 {
-     public interface ICharacterRoster
+    public interface ICharacterRoster
     {
         Character Add ( Character character );
 
         void Delete ( int id );
-        Character get ( int id );
+        Character Get ( int id );
         IEnumerable<Character> GetAll ();
         void Update ( int id, Character character );
     }
