@@ -99,12 +99,12 @@ namespace CharacterCreator
 
             var items = new List<Character>(_characters);
 
+             int i = 0;
 
             foreach (var item in items)
             {
-                int i = 0;
-
-                if (item.Id == id)
+                
+             if (item.Id == id)
 
                     _characters.RemoveAt(i);
                 i++;
@@ -118,14 +118,14 @@ namespace CharacterCreator
                 throw new ArgumentOutOfRangeException(nameof(id), "Id must be greater than zero");
 
             var items = new List<Character>(_characters);
-            foreach (var item in items)
+             int i = 0;
+        foreach (var item in items)
             {
-                int i = 0;
-
                 if (item.Id == id)
 
                     return _characters[i];
-                i++;
+                
+                    i++;
 
             };
             return null;
